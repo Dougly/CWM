@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		111E91B01EB594160072D98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E91AF1EB594160072D98E /* AppDelegate.swift */; };
-		111E91B21EB594160072D98E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E91B11EB594160072D98E /* ViewController.swift */; };
-		111E91B51EB594170072D98E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111E91B31EB594170072D98E /* Main.storyboard */; };
 		111E91B71EB594170072D98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111E91B61EB594170072D98E /* Assets.xcassets */; };
 		111E91BA1EB594170072D98E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111E91B81EB594170072D98E /* LaunchScreen.storyboard */; };
 		111E91C51EB594180072D98E /* ClimbWithMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E91C41EB594180072D98E /* ClimbWithMeTests.swift */; };
+		11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F21EB6A8770040F01E /* LogInViewController.swift */; };
+		11EA06F51EB6A8DE0040F01E /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F41EB6A8DE0040F01E /* LogInViewModel.swift */; };
+		11EA06F71EB6A9820040F01E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F61EB6A9820040F01E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +29,15 @@
 /* Begin PBXFileReference section */
 		111E91AC1EB594160072D98E /* ClimbWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClimbWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		111E91AF1EB594160072D98E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		111E91B11EB594160072D98E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		111E91B41EB594170072D98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		111E91B61EB594170072D98E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		111E91B91EB594170072D98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		111E91BB1EB594170072D98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		111E91C01EB594170072D98E /* ClimbWithMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClimbWithMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		111E91C41EB594180072D98E /* ClimbWithMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimbWithMeTests.swift; sourceTree = "<group>"; };
 		111E91C61EB594180072D98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11EA06F21EB6A8770040F01E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		11EA06F41EB6A8DE0040F01E /* LogInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		11EA06F61EB6A9820040F01E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +79,9 @@
 		111E91AE1EB594160072D98E /* ClimbWithMe */ = {
 			isa = PBXGroup;
 			children = (
-				111E91AF1EB594160072D98E /* AppDelegate.swift */,
-				111E91B11EB594160072D98E /* ViewController.swift */,
-				111E91B31EB594170072D98E /* Main.storyboard */,
+				11EA06ED1EB698330040F01E /* Model */,
+				11EA06F11EB698640040F01E /* View */,
+				11EA06EF1EB698490040F01E /* View Model */,
 				111E91B61EB594170072D98E /* Assets.xcassets */,
 				111E91B81EB594170072D98E /* LaunchScreen.storyboard */,
 				111E91BB1EB594170072D98E /* Info.plist */,
@@ -94,6 +96,31 @@
 				111E91C61EB594180072D98E /* Info.plist */,
 			);
 			path = ClimbWithMeTests;
+			sourceTree = "<group>";
+		};
+		11EA06ED1EB698330040F01E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11EA06F61EB6A9820040F01E /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		11EA06EF1EB698490040F01E /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				111E91AF1EB594160072D98E /* AppDelegate.swift */,
+				11EA06F41EB6A8DE0040F01E /* LogInViewModel.swift */,
+			);
+			name = "View Model";
+			sourceTree = "<group>";
+		};
+		11EA06F11EB698640040F01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11EA06F21EB6A8770040F01E /* LogInViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +210,6 @@
 			files = (
 				111E91BA1EB594170072D98E /* LaunchScreen.storyboard in Resources */,
 				111E91B71EB594170072D98E /* Assets.xcassets in Resources */,
-				111E91B51EB594170072D98E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				111E91B21EB594160072D98E /* ViewController.swift in Sources */,
+				11EA06F71EB6A9820040F01E /* User.swift in Sources */,
 				111E91B01EB594160072D98E /* AppDelegate.swift in Sources */,
+				11EA06F51EB6A8DE0040F01E /* LogInViewModel.swift in Sources */,
+				11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +253,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		111E91B31EB594170072D98E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				111E91B41EB594170072D98E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		111E91B81EB594170072D98E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -414,6 +434,7 @@
 				111E91CB1EB594180072D98E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		111E91CC1EB594180072D98E /* Build configuration list for PBXNativeTarget "ClimbWithMeTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +443,7 @@
 				111E91CE1EB594180072D98E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
