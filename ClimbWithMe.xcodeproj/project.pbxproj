@@ -14,6 +14,9 @@
 		11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F21EB6A8770040F01E /* LogInViewController.swift */; };
 		11EA06F51EB6A8DE0040F01E /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F41EB6A8DE0040F01E /* LogInViewModel.swift */; };
 		11EA06F71EB6A9820040F01E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F61EB6A9820040F01E /* User.swift */; };
+		11EA06FB1EB6AE680040F01E /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11EA06FA1EB6AE680040F01E /* LogInView.xib */; };
+		11EA06FD1EB6AE770040F01E /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06FC1EB6AE770040F01E /* LogInView.swift */; };
+		11EA07011EB6AF220040F01E /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA07001EB6AF220040F01E /* UserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		11EA06F21EB6A8770040F01E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		11EA06F41EB6A8DE0040F01E /* LogInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		11EA06F61EB6A9820040F01E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		11EA06FA1EB6AE680040F01E /* LogInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInView.xib; sourceTree = "<group>"; };
+		11EA06FC1EB6AE770040F01E /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		11EA07001EB6AF220040F01E /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +89,6 @@
 				11EA06F11EB698640040F01E /* View */,
 				11EA06EF1EB698490040F01E /* View Model */,
 				111E91B61EB594170072D98E /* Assets.xcassets */,
-				111E91B81EB594170072D98E /* LaunchScreen.storyboard */,
 				111E91BB1EB594170072D98E /* Info.plist */,
 			);
 			path = ClimbWithMe;
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				111E91C41EB594180072D98E /* ClimbWithMeTests.swift */,
+				11EA07001EB6AF220040F01E /* UserTests.swift */,
 				111E91C61EB594180072D98E /* Info.plist */,
 			);
 			path = ClimbWithMeTests;
@@ -118,7 +124,26 @@
 		11EA06F11EB698640040F01E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11EA06FE1EB6AE880040F01E /* Controller */,
+				11EA06FF1EB6AE950040F01E /* View */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		11EA06FE1EB6AE880040F01E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				11EA06F21EB6A8770040F01E /* LogInViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		11EA06FF1EB6AE950040F01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				111E91B81EB594170072D98E /* LaunchScreen.storyboard */,
+				11EA06FA1EB6AE680040F01E /* LogInView.xib */,
+				11EA06FC1EB6AE770040F01E /* LogInView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -210,6 +235,7 @@
 			files = (
 				111E91BA1EB594170072D98E /* LaunchScreen.storyboard in Resources */,
 				111E91B71EB594170072D98E /* Assets.xcassets in Resources */,
+				11EA06FB1EB6AE680040F01E /* LogInView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EA06FD1EB6AE770040F01E /* LogInView.swift in Sources */,
 				11EA06F71EB6A9820040F01E /* User.swift in Sources */,
 				111E91B01EB594160072D98E /* AppDelegate.swift in Sources */,
 				11EA06F51EB6A8DE0040F01E /* LogInViewModel.swift in Sources */,
@@ -238,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EA07011EB6AF220040F01E /* UserTests.swift in Sources */,
 				111E91C51EB594180072D98E /* ClimbWithMeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,10 +19,11 @@ class User {
     }
     
     func changeName(to firstName: String, lastName: String) {
-        
+        self.firstName = firstName
+        self.lastName = lastName
     }
     
     func changeProfileImage(with image: UIImage) {
-        
+        self.profileImage = image
     }
 }
