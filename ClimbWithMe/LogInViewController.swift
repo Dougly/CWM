@@ -10,13 +10,13 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    //let logInView = LogInView()
+    let logInView = LogInView(frame: CGRect())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-//        self.view.addSubview(logInView)
-//        view.setEqualConstraints(for: logInView)
+        self.view.addSubview(logInView)
+        view.setEqualConstraints(for: logInView)
     }
     
     
