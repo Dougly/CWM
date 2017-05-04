@@ -11,11 +11,11 @@ import UIKit
 class LogInView: UIView {
     
     @IBOutlet var view: UIView!
+    @IBOutlet weak var logoWithTextImageView: UIImageView!
+    @IBOutlet weak var logInStackViewCenterY: NSLayoutConstraint!
     
     override init(frame: CGRect) {
-        print(frame)
         super.init(frame: frame)
-        print("got to content view")
         commonInit()
     }
     
@@ -30,4 +30,26 @@ class LogInView: UIView {
         self.setEqualConstraints(for: view)
     }
     
+    func animateForKeyboard(with constant: CGFloat, hidingKeyboard: Bool) {
+        
+        if hidingKeyboard {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.logInStackViewCenterY.constant -= constant
+                self.logoWithTextImageView.alpha = 0.25
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.logInStackViewCenterY.constant = 0
+                self.logoWithTextImageView.alpha = 1
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    
+    
+    
 }
+
+

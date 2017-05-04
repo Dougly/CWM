@@ -14,11 +14,33 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-        self.view.addSubview(logInView)
-        view.setEqualConstraints(for: logInView)
+        setUpViews()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewWillShow()
+
     }
     
     
+}
+
+extension LogInViewController {
+    
+    func viewWillShow() {
+        logInView.animateForKeyboard(with: 20, hidingKeyboard: false)
+    }
+    
+    
+}
+
+extension LogInViewController {
+    
+    func setUpViews() {
+        self.view.addSubview(logInView)
+        view.setEqualConstraints(for: logInView)
+    }
     
 }
