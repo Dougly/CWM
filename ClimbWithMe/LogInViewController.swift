@@ -29,16 +29,16 @@ class LogInViewController: UIViewController {
 extension LogInViewController {
     
     func showHideKeyboard(_ sender: Notification) {
-        if sender.name == NSNotification.Name.UIKeyboardWillShow {
-            if let userInfo = sender.userInfo {
-                let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
-                let keyboardHeight = keyboardRect.height
-                logInView.animateForKeyboard(with: keyboardHeight, hidingKeyboard: false)
-                
-            }
-        } else {
-            logInView.animateForKeyboard(with: 0, hidingKeyboard: true)
-        }
+//        if sender.name == NSNotification.Name.UIKeyboardWillShow {
+//            if let userInfo = sender.userInfo {
+//                let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+//                let keyboardHeight = keyboardRect.height
+//                logInView.animateForKeyboard(with: keyboardHeight, hidingKeyboard: false)
+//                
+//            }
+//        } else {
+//            logInView.animateForKeyboard(with: 0, hidingKeyboard: true)
+//        }
     }
     
     

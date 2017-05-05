@@ -38,6 +38,28 @@ class LogInView: UIView {
         print("forgot button tapped")
     }
     
+    
+}
+
+
+// TextField Delegate
+extension LogInView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layoutIfNeeded()
+    }
+    
+}
+
+
+// Animations
+extension LogInView {
+    
     func animateForKeyboard(with constant: CGFloat, hidingKeyboard: Bool) {
         
         if hidingKeyboard {
@@ -53,27 +75,14 @@ class LogInView: UIView {
         }
     }
     
-}
-
-
-extension LogInView: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        self.logInStackViewCenterY.constant = 0
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layoutIfNeeded()
-    }
     
 }
 
+
+// View Setup
 extension LogInView {
     
     func setUpSubViews() {
-        
         let screenHeight = UIScreen.main.bounds.height
         let buttonFont = UIFont(name: "Arial", size: 12)
 
@@ -122,14 +131,12 @@ extension LogInView {
         logoWithTextImageView.translatesAutoresizingMaskIntoConstraints = false
         logInStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        
         logoWithTextImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 1).isActive = true
         logoWithTextImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * -0.25).isActive = true
         logoWithTextImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         logoWithTextImageView.heightAnchor.constraint(equalTo: logoWithTextImageView.widthAnchor, multiplier: 146/104).isActive = true
         
-        
-        logInStackViewCenterY = logInStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * 0.15)
+        logInStackViewCenterY = logInStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
         logInStackViewCenterY.isActive = true
         logInStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         logInStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
@@ -137,4 +144,6 @@ extension LogInView {
     }
     
 }
+
+
 
