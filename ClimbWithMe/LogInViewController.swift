@@ -39,6 +39,7 @@ extension LogInViewController {
 extension LogInViewController {
     
     func setUpViews() {
+        self.view.backgroundColor = .white
         self.view.addSubview(logInView)
         view.setEqualConstraints(for: logInView)
     }

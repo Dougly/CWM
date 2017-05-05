@@ -10,9 +10,17 @@ import UIKit
 
 class LogInView: UIView {
     
-    @IBOutlet var view: UIView!
-    @IBOutlet weak var logoWithTextImageView: UIImageView!
-    @IBOutlet weak var logInStackViewCenterY: NSLayoutConstraint!
+    let appFont = UIFont(name: "Helvetica", size: 12)
+    let logoWithTextImageView = UIImageView()
+    let usernameTextField = UITextField()
+    let passwordTextField = UITextField()
+    let logInButton = UIButton(type: .system)
+    let forgotButton = UIButton(type: .system)
+    let buttonsStackView = UIStackView()
+    let logInStackView = UIStackView()
+    var logInStackViewCenterY = NSLayoutConstraint()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,9 +33,15 @@ class LogInView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("LogInView", owner: self, options: nil)
-        self.addSubview(view)
-        self.setEqualConstraints(for: view)
+        setUpSubViews()
+    }
+    
+    func logInButtonTapped() {
+        print("log in button tapped")
+    }
+    
+    func forgotButtonTapped() {
+        print("forgot button tapped")
     }
     
     func animateForKeyboard(with constant: CGFloat, hidingKeyboard: Bool) {
@@ -35,21 +49,78 @@ class LogInView: UIView {
         if hidingKeyboard {
             UIView.animate(withDuration: 0.5, animations: {
                 self.logInStackViewCenterY.constant -= constant
-                self.logoWithTextImageView.alpha = 0.25
-                self.view.layoutIfNeeded()
+                self.logoWithTextImageView.alpha = 0
+                self.layoutIfNeeded()
             })
         } else {
             UIView.animate(withDuration: 0.5, animations: {
                 self.logInStackViewCenterY.constant = 0
                 self.logoWithTextImageView.alpha = 1
-                self.view.layoutIfNeeded()
+                self.layoutIfNeeded()
             })
         }
     }
     
-    
-    
-    
 }
 
+
+extension LogInView {
+    
+    func setUpSubViews() {
+        
+        let screenHeight = UIScreen.main.bounds.height
+        
+        //View properties
+        logoWithTextImageView.image = #imageLiteral(resourceName: "logo_with_text")
+        
+        usernameTextField.borderStyle = .roundedRect
+        
+        passwordTextField.borderStyle = .roundedRect
+        
+        logInButton.setTitle("Log In", for: .normal)
+        logInButton.titleLabel?.font = appFont
+        logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+        
+        forgotButton.setTitle("Forgot", for: .normal)
+        forgotButton.titleLabel?.font = appFont
+        forgotButton.addTarget(self, action: #selector(forgotButtonTapped), for: .touchUpInside)
+        
+        buttonsStackView.addArrangedSubview(forgotButton)
+        buttonsStackView.addArrangedSubview(logInButton)
+        buttonsStackView.alignment = UIStackViewAlignment.fill
+        buttonsStackView.axis = UILayoutConstraintAxis.horizontal
+        buttonsStackView.distribution = UIStackViewDistribution.fillEqually
+        
+        logInStackView.addArrangedSubview(usernameTextField)
+        logInStackView.addArrangedSubview(passwordTextField)
+        logInStackView.addArrangedSubview(buttonsStackView)
+        logInStackView.alignment = .fill
+        logInStackView.axis = .vertical
+        logInStackView.distribution = .equalSpacing
+        logInStackView.backgroundColor = .black
+        
+        
+        
+        //Add to view
+        self.addSubview(logoWithTextImageView)
+        self.addSubview(logInStackView)
+        
+        
+        //Constraints
+        logoWithTextImageView.translatesAutoresizingMaskIntoConstraints = false
+        logInStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        logoWithTextImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 1).isActive = true
+        logoWithTextImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * -0.25).isActive = true
+        logoWithTextImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        logoWithTextImageView.heightAnchor.constraint(equalTo: logoWithTextImageView.widthAnchor, multiplier: 146/104).isActive = true
+        
+        logInStackViewCenterY = logInStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * 0.15)
+        logInStackViewCenterY.isActive = true
+        logInStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        logInStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
+        logInStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15).isActive = true
+    }
+    
+}
 
