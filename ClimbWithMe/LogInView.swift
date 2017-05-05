@@ -46,7 +46,11 @@ class LogInView: UIView {
 extension LogInView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField.returnKeyType == .next {
+            self.passwordTextField.becomeFirstResponder()
+        } else if textField.returnKeyType == .done {
+            textField.resignFirstResponder()
+        }
         return true
     }
     
@@ -60,18 +64,21 @@ extension LogInView: UITextFieldDelegate {
 // Animations
 extension LogInView {
     
-    func animateForKeyboard(with constant: CGFloat, hidingKeyboard: Bool) {
+    func animateKeyboard(with constant: CGFloat, hidingKeyboard: Bool) {
         
-        if hidingKeyboard {
+        if !hidingKeyboard {
             UIView.animate(withDuration: 0.5, animations: {
                 self.logInStackViewCenterY.constant -= constant
+                self.logoWithTextImageView.alpha = 0.25
                 self.layoutIfNeeded()
             })
         } else {
             UIView.animate(withDuration: 0.5, animations: {
-                self.logInStackViewCenterY.constant = 0
+                self.logInStackViewCenterY.constant += constant
+                self.logoWithTextImageView.alpha = 1
                 self.layoutIfNeeded()
             })
+            
         }
     }
     
@@ -87,15 +94,17 @@ extension LogInView {
         let buttonFont = UIFont(name: "Arial", size: 12)
 
         
-        //View properties
+        // View properties
         logoWithTextImageView.image = #imageLiteral(resourceName: "logo_with_text")
         
-        usernameTextField.borderStyle = .line
+        usernameTextField.borderStyle = .roundedRect
+        usernameTextField.backgroundColor = .white
         usernameTextField.keyboardType = UIKeyboardType.emailAddress
-        usernameTextField.returnKeyType = UIReturnKeyType.done
+        usernameTextField.returnKeyType = UIReturnKeyType.next
         usernameTextField.delegate = self
         
-        passwordTextField.borderStyle = .line
+        passwordTextField.borderStyle = .roundedRect
+        passwordTextField.backgroundColor = .white
         passwordTextField.returnKeyType = UIReturnKeyType.done
         passwordTextField.delegate = self
         
@@ -111,7 +120,7 @@ extension LogInView {
         buttonsStackView.addArrangedSubview(logInButton)
         buttonsStackView.alignment = UIStackViewAlignment.fill
         buttonsStackView.axis = UILayoutConstraintAxis.horizontal
-        buttonsStackView.distribution = UIStackViewDistribution.fillEqually
+        buttonsStackView.distribution = UIStackViewDistribution.equalSpacing
         
         logInStackView.addArrangedSubview(usernameTextField)
         logInStackView.addArrangedSubview(passwordTextField)
@@ -119,15 +128,14 @@ extension LogInView {
         logInStackView.alignment = .fill
         logInStackView.axis = .vertical
         logInStackView.distribution = .equalSpacing
-        logInStackView.backgroundColor = .black
         
         
-        //Add to view
+        // Add subviews to self
         self.addSubview(logoWithTextImageView)
         self.addSubview(logInStackView)
         
         
-        //Constraints
+        // Constraints
         logoWithTextImageView.translatesAutoresizingMaskIntoConstraints = false
         logInStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -136,7 +144,7 @@ extension LogInView {
         logoWithTextImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         logoWithTextImageView.heightAnchor.constraint(equalTo: logoWithTextImageView.widthAnchor, multiplier: 146/104).isActive = true
         
-        logInStackViewCenterY = logInStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
+        logInStackViewCenterY = logInStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * 0.1)
         logInStackViewCenterY.isActive = true
         logInStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         logInStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true

@@ -11,6 +11,7 @@ import UIKit
 class LogInViewController: UIViewController {
     
     let logInView = LogInView()
+    var keyboardIsShowing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +30,20 @@ class LogInViewController: UIViewController {
 extension LogInViewController {
     
     func showHideKeyboard(_ sender: Notification) {
-//        if sender.name == NSNotification.Name.UIKeyboardWillShow {
-//            if let userInfo = sender.userInfo {
-//                let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
-//                let keyboardHeight = keyboardRect.height
-//                logInView.animateForKeyboard(with: keyboardHeight, hidingKeyboard: false)
-//                
-//            }
-//        } else {
-//            logInView.animateForKeyboard(with: 0, hidingKeyboard: true)
-//        }
+        
+        if let userInfo = sender.userInfo {
+            let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+            let keyboardHeight = keyboardRect.height
+            
+            if sender.name == NSNotification.Name.UIKeyboardWillShow && !keyboardIsShowing {
+                keyboardIsShowing = true
+                logInView.animateKeyboard(with: keyboardHeight, hidingKeyboard: false)
+                
+            } else if sender.name == NSNotification.Name.UIKeyboardWillHide && keyboardIsShowing {
+                logInView.animateKeyboard(with: keyboardHeight, hidingKeyboard: true)
+                keyboardIsShowing = false
+            }
+        }
     }
     
     
