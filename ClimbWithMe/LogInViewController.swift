@@ -10,28 +10,38 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let logInView = LogInView(frame: CGRect())
+    let logInView = LogInView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        viewWillShow()
 
-    }
     
     
 }
 
 extension LogInViewController {
     
-    func viewWillShow() {
-        logInView.animateForKeyboard(with: 20, hidingKeyboard: false)
+    func showHideKeyboard(_ sender: Notification) {
+        if sender.name == NSNotification.Name.UIKeyboardWillShow {
+            if let userInfo = sender.userInfo {
+                let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+                let keyboardHeight = keyboardRect.height
+                logInView.animateForKeyboard(with: keyboardHeight, hidingKeyboard: false)
+                
+            }
+        } else {
+            logInView.animateForKeyboard(with: 0, hidingKeyboard: true)
+        }
     }
+    
+    
     
     
 }
