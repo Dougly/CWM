@@ -51,11 +51,54 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
                     print("🔥 singed in user with email and password \(user)")
+                    self.present(MainViewController(), animated: true, completion: { 
+                        print("transitioned to mainVC after logging in with email and password")
+                    })
                 }
             })
         }
     }
 
+}
+
+extension LogInViewController: GIDSignInDelegate {
+    
+    // Firebase GIDSignInDelegate Methods
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print("🔥 Error when signing in with google \(error)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                          accessToken: authentication.accessToken)
+        
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            // ...
+            if let error = error {
+                print("🔥 Error after getting credential with google \(error)")
+                return
+            } else if let user = user {
+                print("🔥 succesfully authenticared with google \(user)")
+                self.present(MainViewController(), animated: true, completion: {
+                    print("transitioned to mainVC after logging in with google")
+                })
+
+            }
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
 }
 
 extension LogInViewController {

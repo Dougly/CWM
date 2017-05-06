@@ -10,6 +10,7 @@ target 'ClimbWithMe' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Database'
 
   target 'ClimbWithMeTests' do
     inherit! :search_paths
