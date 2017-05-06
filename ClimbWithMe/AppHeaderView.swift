@@ -30,6 +30,8 @@ extension AppHeaderView {
     
     func setUpSubViews() {
         
+        let width = UIScreen.main.bounds.width
+        
         logoImageView.image = #imageLiteral(resourceName: "logo_blue")
         profileImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
         chatImageView.image = #imageLiteral(resourceName: "ic_chat_48pt")
@@ -47,15 +49,15 @@ extension AppHeaderView {
         logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
         
-        profileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: self.frame.width * 0.5).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: width * 0.025).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
-        profileImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
+        profileImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
         
-        chatImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: self.frame.width * 1.5).isActive = true
+        chatImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: width * -0.025).isActive = true
         chatImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        chatImageView.widthAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
-        chatImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
+        chatImageView.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
+        chatImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
         
         
         

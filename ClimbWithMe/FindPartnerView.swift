@@ -29,11 +29,13 @@ extension FindPartnerView {
     
     func setUpSubViews() {
         
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
         self.addSubview(headerView)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
         headerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: self.topAnchor, constant: statusBarHeight).isActive = true
         headerView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         headerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
     

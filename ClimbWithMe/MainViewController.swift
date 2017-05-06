@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     func setUpViews() {
+        self.view.backgroundColor = .white
         self.view.addSubview(findPartnerView)
         self.view.setEqualConstraints(for: findPartnerView)
     }
