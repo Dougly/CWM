@@ -27,6 +27,20 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
 
         
     }
+    
+    func registerUser() {
+        if let email = logInView.usernameTextField.text,
+            let password = logInView.passwordTextField.text {
+            
+            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                if let error = error {
+                    print("🔥 failed to create user with email and password \(error)")
+                } else if let user = user {
+                    print("🔥 created user with email and password \(user)")
+                }
+            })
+        }
+    }
 
 }
 
@@ -72,6 +86,9 @@ extension LogInViewController {
         googleSignInButton.centerYAnchor.constraint(equalTo: self.logInView.centerYAnchor, constant: screenHeight * 0.2).isActive = true
         googleSignInButton.widthAnchor.constraint(equalTo: logInView.logInStackView.widthAnchor).isActive = true
         googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.5).isActive = true
+        
+        // Register New Account Button
+        logInView.registerButton.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
         
     }
     

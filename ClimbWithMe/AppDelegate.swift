@@ -52,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             // ...
             if let error = error {
-                print("🔥 Error after getting credential \(error)")
+                print("🔥 Error after getting credential with google \(error)")
                 return
             } else if let user = user {
-                print("🔥 succesfully logged in \(user)")
+                print("🔥 succesfully authenticared with google \(user)")
             }
         }
     }

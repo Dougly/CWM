@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import GoogleSignIn
 
 class LogInView: UIView {
@@ -15,7 +16,7 @@ class LogInView: UIView {
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
     let logInButton = UIButton(type: .system)
-    let forgotButton = UIButton(type: .system)
+    let registerButton = UIButton(type: .system)
     let buttonsStackView = UIStackView()
     let logInStackView = UIStackView()
     let googleSignInButton = GIDSignInButton()
@@ -29,15 +30,6 @@ class LogInView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUpSubViews()
-    }
-
-    
-    func logInButtonTapped() {
-        print("log in button tapped")
-    }
-    
-    func forgotButtonTapped() {
-        print("forgot button tapped")
     }
     
     
@@ -112,13 +104,11 @@ extension LogInView {
         
         logInButton.setTitle("Log In", for: .normal)
         logInButton.titleLabel?.font = buttonFont
-        logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
-        forgotButton.setTitle("Forgot", for: .normal)
-        forgotButton.titleLabel?.font = buttonFont
-        forgotButton.addTarget(self, action: #selector(forgotButtonTapped), for: .touchUpInside)
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.titleLabel?.font = buttonFont
         
-        buttonsStackView.addArrangedSubview(forgotButton)
+        buttonsStackView.addArrangedSubview(registerButton)
         buttonsStackView.addArrangedSubview(logInButton)
         buttonsStackView.alignment = UIStackViewAlignment.fill
         buttonsStackView.axis = UILayoutConstraintAxis.horizontal
