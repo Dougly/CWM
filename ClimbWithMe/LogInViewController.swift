@@ -10,15 +10,17 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, GIDSignInUIDelegate {
     
     let logInView = LogInView()
+    let googleSignInButton = GIDSignInButton()
     var keyboardIsShowing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
-        setUpGoogleSignIn()
+        GIDSignIn.sharedInstance().uiDelegate = self
+
         
         NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -26,21 +28,6 @@ class LogInViewController: UIViewController {
         
     }
 
-    
-    
-}
-
-
-// Firebase Google Authentication
-extension LogInViewController: GIDSignInUIDelegate {
-    
-    func setUpGoogleSignIn() {
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
-        
-        // TODO(developer) Configure the sign-in button look/feel
-        // ...
-    }
 }
 
 extension LogInViewController {
@@ -70,9 +57,22 @@ extension LogInViewController {
 extension LogInViewController {
     
     func setUpViews() {
+        let screenHeight = UIScreen.main.bounds.height
+        
         self.view.backgroundColor = .white
         self.view.addSubview(logInView)
         view.setEqualConstraints(for: logInView)
+        
+        
+        // Google Sign In Button
+        self.view.addSubview(googleSignInButton)
+        
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.logInView.centerXAnchor).isActive = true
+        googleSignInButton.centerYAnchor.constraint(equalTo: self.logInView.centerYAnchor, constant: screenHeight * 0.2).isActive = true
+        googleSignInButton.widthAnchor.constraint(equalTo: logInView.logInStackView.widthAnchor).isActive = true
+        googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.5).isActive = true
+        
     }
     
 }

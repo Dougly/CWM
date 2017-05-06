@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
-        
         return true
         
     }

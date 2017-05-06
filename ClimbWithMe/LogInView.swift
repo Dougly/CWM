@@ -135,7 +135,6 @@ extension LogInView {
         // Add subviews to self
         self.addSubview(logoWithTextImageView)
         self.addSubview(logInStackView)
-        self.addSubview(googleSignInButton)
         
         
         // Constraints
@@ -154,10 +153,7 @@ extension LogInView {
         logInStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
         logInStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15).isActive = true
         
-        googleSignInButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        googleSignInButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * 0.2).isActive = true
-        googleSignInButton.widthAnchor.constraint(equalTo: logInStackView.widthAnchor).isActive = true
-        googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.2).isActive = true
+        
         
     }
     
