@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LogInViewController: UIViewController {
     
@@ -16,6 +18,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+        setUpGoogleSignIn()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -25,6 +28,19 @@ class LogInViewController: UIViewController {
 
     
     
+}
+
+
+// Firebase Google Authentication
+extension LogInViewController: GIDSignInUIDelegate {
+    
+    func setUpGoogleSignIn() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
+        // TODO(developer) Configure the sign-in button look/feel
+        // ...
+    }
 }
 
 extension LogInViewController {

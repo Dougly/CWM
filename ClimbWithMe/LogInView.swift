@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LogInView: UIView {
     
@@ -17,6 +18,7 @@ class LogInView: UIView {
     let forgotButton = UIButton(type: .system)
     let buttonsStackView = UIStackView()
     let logInStackView = UIStackView()
+    let googleSignInButton = GIDSignInButton()
     var logInStackViewCenterY = NSLayoutConstraint()
     
     override init(frame: CGRect) {
@@ -133,11 +135,13 @@ extension LogInView {
         // Add subviews to self
         self.addSubview(logoWithTextImageView)
         self.addSubview(logInStackView)
+        self.addSubview(googleSignInButton)
         
         
         // Constraints
         logoWithTextImageView.translatesAutoresizingMaskIntoConstraints = false
         logInStackView.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         
         logoWithTextImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 1).isActive = true
         logoWithTextImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * -0.25).isActive = true
@@ -149,6 +153,12 @@ extension LogInView {
         logInStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         logInStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
         logInStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15).isActive = true
+        
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        googleSignInButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: screenHeight * 0.2).isActive = true
+        googleSignInButton.widthAnchor.constraint(equalTo: logInStackView.widthAnchor).isActive = true
+        googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.2).isActive = true
+        
     }
     
 }
