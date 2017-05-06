@@ -41,6 +41,20 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
             })
         }
     }
+    
+    func signIn() {
+        if let email = logInView.usernameTextField.text,
+            let password = logInView.passwordTextField.text {
+            
+            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+                if let error = error {
+                    print("🔥 failed to sign in user with email and password \(error)")
+                } else if let user = user {
+                    print("🔥 singed in user with email and password \(user)")
+                }
+            })
+        }
+    }
 
 }
 
@@ -90,6 +104,8 @@ extension LogInViewController {
         // Register New Account Button
         logInView.registerButton.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
         
+        // Sign In with email and password
+        logInView.logInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
     
 }
