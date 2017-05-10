@@ -18,6 +18,7 @@
 		1154C4F91EBE3C6E00E45C05 /* AppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154C4F81EBE3C6E00E45C05 /* AppHeaderView.swift */; };
 		1154C4FB1EBE57E700E45C05 /* PictureAndNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154C4FA1EBE57E700E45C05 /* PictureAndNameView.swift */; };
 		11BDD4151EB6C8920018890A /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDD4141EB6C8920018890A /* LogInView.swift */; };
+		11C386AB1EC11D6A009B892B /* FirbaseAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C386AA1EC11D6A009B892B /* FirbaseAPIClient.swift */; };
 		11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F21EB6A8770040F01E /* LogInViewController.swift */; };
 		11EA06F71EB6A9820040F01E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F61EB6A9820040F01E /* User.swift */; };
 		11EA07011EB6AF220040F01E /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA07001EB6AF220040F01E /* UserTests.swift */; };
@@ -51,6 +52,7 @@
 		1154C4F81EBE3C6E00E45C05 /* AppHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHeaderView.swift; sourceTree = "<group>"; };
 		1154C4FA1EBE57E700E45C05 /* PictureAndNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureAndNameView.swift; sourceTree = "<group>"; };
 		11BDD4141EB6C8920018890A /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		11C386AA1EC11D6A009B892B /* FirbaseAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirbaseAPIClient.swift; sourceTree = "<group>"; };
 		11EA06F21EB6A8770040F01E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		11EA06F61EB6A9820040F01E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11EA07001EB6AF220040F01E /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				11EA06F61EB6A9820040F01E /* User.swift */,
+				11C386AA1EC11D6A009B892B /* FirbaseAPIClient.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				1154C4F91EBE3C6E00E45C05 /* AppHeaderView.swift in Sources */,
 				11EA06F71EB6A9820040F01E /* User.swift in Sources */,
 				1154C4FB1EBE57E700E45C05 /* PictureAndNameView.swift in Sources */,
+				11C386AB1EC11D6A009B892B /* FirbaseAPIClient.swift in Sources */,
 				111E91B01EB594160072D98E /* AppDelegate.swift in Sources */,
 				11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */,
 				1154C4F51EBE38C200E45C05 /* MainViewController.swift in Sources */,

@@ -9,13 +9,11 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var ref: FIRDatabaseReference!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         
-        
-        ref = FIRDatabase.database().reference()
         
         // Set up window and root VC
         window = UIWindow()

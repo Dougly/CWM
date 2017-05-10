@@ -9,19 +9,18 @@
 import UIKit
 
 class User {
-    var firstName: String
-    var lastName: String
+    
+    var uid: String
+    var userEmail: String
+    var userName: String?
     var profileImage: UIImage? = nil
     
-    init(firstName: String, lastName: String) {
-        self.firstName = firstName
-        self.lastName = lastName
+    init(uid: String, userEmail: String) {
+        self.uid = uid
+        self.userEmail = userEmail
     }
     
-    func changeName(to firstName: String, lastName: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-    }
+    
     
     func changeProfileImage(with image: UIImage) {
         self.profileImage = image

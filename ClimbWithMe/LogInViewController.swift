@@ -9,12 +9,14 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FirebaseDatabase
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate {
     
     let logInView = LogInView()
     let googleSignInButton = GIDSignInButton()
     var keyboardIsShowing = false
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 if let error = error {
                     print("🔥 failed to create user with email and password \(error)")
                 } else if let user = user {
+                    self.ref.child("users").child(user.uid).setValue(["username": email])
                     print("🔥 created user with email and password \(user)")
                 }
             })
@@ -86,6 +89,7 @@ extension LogInViewController: GIDSignInDelegate {
                 return
             } else if let user = user {
                 print("🔥 succesfully authenticared with google \(user)")
+                self.ref.child("users").child(user.uid).setValue(["username": user.email])
                 self.present(MainViewController(), animated: true, completion: {
                     print("transitioned to mainVC after logging in with google")
                 })
