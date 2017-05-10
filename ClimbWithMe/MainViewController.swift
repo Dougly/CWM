@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     
     let headerView = AppHeaderView()
     let findPartnerView = FindPartnerView()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -53,9 +53,12 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 if let error = error {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
+                    let loggedInUser = User(uid: user.uid, userEmail: email)
                     print("🔥 singed in user with email and password \(user)")
-                    self.present(MainViewController(), animated: true, completion: { 
+                    let mainVC = MainViewController()
+                    self.present(mainVC, animated: true, completion: {
                         print("transitioned to mainVC after logging in with email and password")
+                        mainVC.user = loggedInUser
                     })
                 }
             })
@@ -88,10 +91,30 @@ extension LogInViewController: GIDSignInDelegate {
                 print("🔥 Error after getting credential with google \(error)")
                 return
             } else if let user = user {
+                guard let email = user.email else { return }
+                let loggedInUser = User(uid: user.uid, userEmail: email)
                 print("🔥 succesfully authenticared with google \(user)")
-                self.ref.child("users").child(user.uid).setValue(["username": user.email])
-                self.present(MainViewController(), animated: true, completion: {
+                
+                
+                self.ref.child("users").child(user.uid).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+                    let value = snapshot.value as? [String : Any]
+                    if value != nil {
+                        print("🔥 user already exists")
+                    } else {
+                        print("🔥 create user in database")
+                        self.ref.child("users").child(user.uid).setValue(["email": user.email])
+                        self.ref.child("users/\(user.uid)/username").setValue(user.displayName)
+                    }
+                })
+                
+                
+                
+                
+                let mainVC = MainViewController()
+                self.present(mainVC, animated: true, completion: {
                     print("transitioned to mainVC after logging in with google")
+                    mainVC.user = loggedInUser
+                    
                 })
 
             }
