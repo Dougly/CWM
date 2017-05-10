@@ -12,12 +12,13 @@ class User {
     
     var uid: String
     var userEmail: String
-    var userName: String?
+    var name: String
     var profileImage: UIImage? = nil
     
-    init(uid: String, userEmail: String) {
+    init(uid: String, userEmail: String, name: String) {
         self.uid = uid
         self.userEmail = userEmail
+        self.name = name
     }
     
     

@@ -21,11 +21,14 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+        addObseversForKeyboard()
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        // Sign in silently with google
+        GIDSignIn.sharedInstance().signIn()
 
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
 
         
     }
@@ -53,7 +56,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 if let error = error {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
-                    let loggedInUser = User(uid: user.uid, userEmail: email)
+                    let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
                     print("🔥 singed in user with email and password \(user)")
                     let mainVC = MainViewController()
                     self.present(mainVC, animated: true, completion: {
@@ -92,7 +95,8 @@ extension LogInViewController: GIDSignInDelegate {
                 return
             } else if let user = user {
                 guard let email = user.email else { return }
-                let loggedInUser = User(uid: user.uid, userEmail: email)
+                
+                let loggedInUser = User(uid: user.uid, userEmail: email, name: (user.displayName ?? ""))
                 print("🔥 succesfully authenticared with google \(user)")
                 
                 
@@ -119,7 +123,11 @@ extension LogInViewController: GIDSignInDelegate {
 
             }
         }
+    
     }
+    
+    
+    
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
@@ -152,7 +160,14 @@ extension LogInViewController {
     
 }
 
+
+// MARK: View Setup
 extension LogInViewController {
+    
+    func addObseversForKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showHideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
     
     func setUpViews() {
         let screenHeight = UIScreen.main.bounds.height

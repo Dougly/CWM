@@ -19,6 +19,7 @@
 		1154C4FB1EBE57E700E45C05 /* PictureAndNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154C4FA1EBE57E700E45C05 /* PictureAndNameView.swift */; };
 		11BDD4151EB6C8920018890A /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDD4141EB6C8920018890A /* LogInView.swift */; };
 		11C386AB1EC11D6A009B892B /* FirbaseAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C386AA1EC11D6A009B892B /* FirbaseAPIClient.swift */; };
+		11C386AE1EC3BF60009B892B /* ClimbWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11C386AC1EC3BF60009B892B /* ClimbWithMe.xcdatamodeld */; };
 		11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F21EB6A8770040F01E /* LogInViewController.swift */; };
 		11EA06F71EB6A9820040F01E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA06F61EB6A9820040F01E /* User.swift */; };
 		11EA07011EB6AF220040F01E /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EA07001EB6AF220040F01E /* UserTests.swift */; };
@@ -53,6 +54,7 @@
 		1154C4FA1EBE57E700E45C05 /* PictureAndNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureAndNameView.swift; sourceTree = "<group>"; };
 		11BDD4141EB6C8920018890A /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		11C386AA1EC11D6A009B892B /* FirbaseAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirbaseAPIClient.swift; sourceTree = "<group>"; };
+		11C386AD1EC3BF60009B892B /* ClimbWithMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClimbWithMe.xcdatamodel; sourceTree = "<group>"; };
 		11EA06F21EB6A8770040F01E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		11EA06F61EB6A9820040F01E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11EA07001EB6AF220040F01E /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				111E91B61EB594170072D98E /* Assets.xcassets */,
 				111E91BB1EB594170072D98E /* Info.plist */,
 				1154C4F11EBD40DE00E45C05 /* GoogleService-Info.plist */,
+				11C386AC1EC3BF60009B892B /* ClimbWithMe.xcdatamodeld */,
 			);
 			path = ClimbWithMe;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				11BDD4151EB6C8920018890A /* LogInView.swift in Sources */,
 				11EA07031EB6B7A50040F01E /* UIViewExtension.swift in Sources */,
 				1154C4F71EBE3BE800E45C05 /* FindPartnerView.swift in Sources */,
+				11C386AE1EC3BF60009B892B /* ClimbWithMe.xcdatamodeld in Sources */,
 				1154C4F91EBE3C6E00E45C05 /* AppHeaderView.swift in Sources */,
 				11EA06F71EB6A9820040F01E /* User.swift in Sources */,
 				1154C4FB1EBE57E700E45C05 /* PictureAndNameView.swift in Sources */,
@@ -615,6 +619,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11C386AC1EC3BF60009B892B /* ClimbWithMe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11C386AD1EC3BF60009B892B /* ClimbWithMe.xcdatamodel */,
+			);
+			currentVersion = 11C386AD1EC3BF60009B892B /* ClimbWithMe.xcdatamodel */;
+			path = ClimbWithMe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 111E91A41EB594160072D98E /* Project object */;
 }
