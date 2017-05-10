@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class LogInViewController: UIViewController, GIDSignInUIDelegate {
     
+    let dataStore = DataStore.sharedInstance
     let logInView = LogInView()
     let googleSignInButton = GIDSignInButton()
     var keyboardIsShowing = false
@@ -24,29 +25,19 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         addObseversForKeyboard()
         GIDSignIn.sharedInstance().uiDelegate = self
         
-        // Sign in silently with google
-        GIDSignIn.sharedInstance().signIn()
+        // uncomment to Sign in silently
+        // GIDSignIn.sharedInstance().signIn()
 
-        
-        
 
         
     }
     
-    func registerUser() {
-        if let email = logInView.usernameTextField.text,
-            let password = logInView.passwordTextField.text {
-            
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
-                if let error = error {
-                    print("🔥 failed to create user with email and password \(error)")
-                } else if let user = user {
-                    self.ref.child("users").child(user.uid).setValue(["username": email])
-                    print("🔥 created user with email and password \(user)")
-                }
-            })
-        }
+    func presentRegisterUserVC() {
+        self.present(RegisterUserViewController(), animated: true, completion: nil)
+        
     }
+    
+   
     
     func signIn() {
         if let email = logInView.usernameTextField.text,
@@ -59,9 +50,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
                     print("🔥 singed in user with email and password \(user)")
                     let mainVC = MainViewController()
+                    mainVC.user = loggedInUser
                     self.present(mainVC, animated: true, completion: {
                         print("transitioned to mainVC after logging in with email and password")
-                        mainVC.user = loggedInUser
                     })
                 }
             })
@@ -106,8 +97,7 @@ extension LogInViewController: GIDSignInDelegate {
                         print("🔥 user already exists")
                     } else {
                         print("🔥 create user in database")
-                        self.ref.child("users").child(user.uid).setValue(["email": user.email])
-                        self.ref.child("users/\(user.uid)/username").setValue(user.displayName)
+                        self.ref.child("users").child(user.uid).setValue(["email": user.email, "name" : user.displayName])
                     }
                 })
                 
@@ -187,7 +177,7 @@ extension LogInViewController {
         googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.5).isActive = true
         
         // Register New Account Button
-        logInView.registerButton.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
+        logInView.registerButton.addTarget(self, action: #selector(presentRegisterUserVC), for: .touchUpInside)
         
         // Sign In with email and password
         logInView.logInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
