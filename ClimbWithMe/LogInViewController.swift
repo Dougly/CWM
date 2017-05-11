@@ -23,10 +23,19 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         setUpViews()
         addObseversForKeyboard()
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+
         
         // uncomment to Sign in silently
-        // GIDSignIn.sharedInstance().signIn()
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                let mainVC = MainViewController()
+                mainVC.user = User(uid: user.uid, userEmail: (user.email ?? ""), name: (user.displayName ?? ""))
+                self.present(mainVC, animated: true, completion: nil)
+            }
+        }
 
 
         

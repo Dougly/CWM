@@ -21,14 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set up Firebase
         FIRApp.configure()
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        
+    
         
         // Set up window and root VC
-        window = UIWindow()
         let rootViewController = LogInViewController()
+        window = UIWindow()
         window?.rootViewController = rootViewController
-        GIDSignIn.sharedInstance().delegate = rootViewController
         window?.makeKeyAndVisible()
         
         return true

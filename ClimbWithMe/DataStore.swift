@@ -15,7 +15,21 @@ class DataStore {
     
     private init() {}
     
+    var savedUserInfo = SavedUserInfo()
     
+    func fetchData() {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<SavedUserInfo>(entityName: "SavedUserInfo")
+
+        do {
+            let savedInfoArray = try context.fetch(fetchRequest)
+            if let savedInfo = savedInfoArray.first {
+                savedUserInfo = savedInfo
+            }
+        } catch {
+            print("couldn't get savedlogin from fetch request")
+        }
+    }
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
