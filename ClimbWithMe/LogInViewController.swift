@@ -19,16 +19,23 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     var keyboardIsShowing = false
     let ref = FIRDatabase.database().reference()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
         addObseversForKeyboard()
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-
+        setUpGoogleSignIn()
         
-        // uncomment to Sign in silently
+    }
+    
+    
+    
+    
+    
+    
+    func checkIfUserIsAlreadySignedIn() {
+        // Sign in user automatically
+        // THIS IS BROKEN -- SOMETHING ABOUT PRESENTING VC on VC whos view is not in window heirarchy
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
                 let mainVC = MainViewController()
@@ -36,18 +43,21 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                 self.present(mainVC, animated: true, completion: nil)
             }
         }
-
-
-        
     }
     
     func presentRegisterUserVC() {
+        // Display VC to register new user with email and password
         self.present(RegisterUserViewController(), animated: true, completion: nil)
-        
     }
     
-   
     
+}
+
+
+// MARK: Firebase Google and User Email/Pass Sign in Methods
+extension LogInViewController: GIDSignInDelegate {
+    
+    // Sign in with Email and Password
     func signIn() {
         if let email = logInView.usernameTextField.text,
             let password = logInView.passwordTextField.text {
@@ -57,28 +67,29 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
-                    print("🔥 singed in user with email and password \(user)")
                     let mainVC = MainViewController()
                     mainVC.user = loggedInUser
-                    self.present(mainVC, animated: true, completion: {
-                        print("transitioned to mainVC after logging in with email and password")
-                    })
+                    self.present(mainVC, animated: true, completion: nil)
                 }
             })
         }
     }
-
-}
-
-extension LogInViewController: GIDSignInDelegate {
     
-    // Firebase GIDSignInDelegate Methods
+    
+    
+    
+    // Sign in with Gooogle
+    func setUpGoogleSignIn() {
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
         if let error = error {
             print("🔥 Error when signing in with google \(error)")
             return
@@ -89,28 +100,25 @@ extension LogInViewController: GIDSignInDelegate {
                                                           accessToken: authentication.accessToken)
         
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            // ...
             if let error = error {
                 print("🔥 Error after getting credential with google \(error)")
                 return
             } else if let user = user {
                 guard let email = user.email else { return }
-                
                 let loggedInUser = User(uid: user.uid, userEmail: email, name: (user.displayName ?? ""))
-                print("🔥 succesfully authenticared with google \(user)")
-                
-                
                 self.ref.child("users").child(user.uid).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
                     let value = snapshot.value as? [String : Any]
                     if value != nil {
                         print("🔥 user already exists")
                     } else {
-                        print("🔥 create user in database")
-                        self.ref.child("users").child(user.uid).setValue(["email": user.email, "name" : user.displayName])
+                        // create user in database
+                        if let userEmail = user.email {
+                            self.ref.child("users").child(userEmail).setValue(["uid": user.uid, "name" : user.displayName])
+                        } else {
+                            print("no email attatched to google sign in?")
+                        }
                     }
                 })
-                
-                
                 
                 
                 let mainVC = MainViewController()
@@ -119,14 +127,9 @@ extension LogInViewController: GIDSignInDelegate {
                     mainVC.user = loggedInUser
                     
                 })
-
             }
         }
-    
     }
-    
-    
-    
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
@@ -135,6 +138,7 @@ extension LogInViewController: GIDSignInDelegate {
     
 }
 
+// MARK: Animate views around keyboard showing and hiding
 extension LogInViewController {
     
     func showHideKeyboard(_ sender: Notification) {

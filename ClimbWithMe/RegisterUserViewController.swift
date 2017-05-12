@@ -33,8 +33,8 @@ class RegisterUserViewController: UIViewController {
                 if let error = error {
                     print("🔥 failed to create user with email and password \(error)")
                 } else if let user = user {
-                    self.ref.child("users").child(user.uid).setValue(["email" : email,
-                                                                      "name" : name])
+                    self.ref.child("users").child(email).setValue(["uid" : user.uid,
+                                                                   "name" : name])
                     print("🔥 created user with email and password \(user)")
                     self.dismiss(animated: true, completion: nil)
                 }

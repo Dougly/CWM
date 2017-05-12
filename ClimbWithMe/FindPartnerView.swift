@@ -16,6 +16,7 @@ class FindPartnerView: UIView {
     let typeLabel = UILabel()
     let settingsStackView = UIStackView()
     let findPartnerButton = UIButton(type: .system)
+    let viewType = ViewType.findPartnerView
     
     
     override init(frame: CGRect) {

@@ -13,6 +13,8 @@ class AppHeaderView: UIView {
     let logoImageView = UIImageView()
     let profileImageView = UIImageView()
     let chatImageView = UIImageView()
+    let selectionBar = UIView()
+    var selectionBarCenterX = NSLayoutConstraint()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +24,13 @@ class AppHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUpSubViews()
+    }
+    
+    func animateSelectionBar(constant: CGFloat) {
+        UIView.animate(withDuration: 0.5) { 
+            self.selectionBarCenterX.constant = constant
+            self.layoutIfNeeded()
+        }
     }
 
 }
@@ -33,16 +42,22 @@ extension AppHeaderView {
         let width = UIScreen.main.bounds.width
         
         logoImageView.image = #imageLiteral(resourceName: "logo_blue")
+        logoImageView.isUserInteractionEnabled = true
         profileImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
+        profileImageView.isUserInteractionEnabled = true
         chatImageView.image = #imageLiteral(resourceName: "ic_chat_48pt")
+        chatImageView.isUserInteractionEnabled = true
+        selectionBar.backgroundColor = .black
         
         self.addSubview(logoImageView)
         self.addSubview(profileImageView)
         self.addSubview(chatImageView)
+        self.addSubview(selectionBar)
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         chatImageView.translatesAutoresizingMaskIntoConstraints = false
+        selectionBar.translatesAutoresizingMaskIntoConstraints = false
         
         logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -59,7 +74,11 @@ extension AppHeaderView {
         chatImageView.widthAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
         chatImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.75).isActive = true
         
-        
+        selectionBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+        selectionBar.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/10).isActive = true
+        selectionBar.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        selectionBarCenterX = selectionBar.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        selectionBarCenterX.isActive = true
         
     }
     
