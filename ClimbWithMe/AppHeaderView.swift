@@ -32,6 +32,14 @@ class AppHeaderView: UIView {
             self.layoutIfNeeded()
         }
     }
+    
+    func animateSelectionBar(byAdding constant: CGFloat) {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseInOut], animations: { 
+            self.selectionBarCenterX.constant += constant
+            self.layoutIfNeeded() 
+        }, completion: nil)
+    
+    }
 
 }
 

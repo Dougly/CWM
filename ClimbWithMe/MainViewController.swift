@@ -21,10 +21,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         
-        
-        
     }
-    func animateToNewView(_ sender: UITapGestureRecognizer) {
+    
+    
+    func showView(_ sender: UITapGestureRecognizer) {
         if let senderView = sender.view {
             switch senderView.tag {
             case 1:
@@ -41,9 +41,26 @@ class MainViewController: UIViewController {
         }
     }
     
-    //MOV ANIMATION TO VIEW
+    func swipeToView(_ sender: UISwipeGestureRecognizer) {
+        let screenWidth = UIScreen.main.bounds.width
+        if sender.direction == .right && findPartnerLeadingConstraint.constant < screenWidth {
+            animateByAdding(screenWidth)
+            headerView.animateSelectionBar(byAdding: screenWidth / 3 * -1)
+        } else if sender.direction == .left && (findPartnerLeadingConstraint.constant > screenWidth * -1){
+            animateByAdding(screenWidth * -1)
+            headerView.animateSelectionBar(byAdding: screenWidth / 3)
+        }
+    }
+    
+    func animateByAdding(_ constant: CGFloat) {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: { 
+            self.findPartnerLeadingConstraint.constant += constant
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
     func animate(constraint: NSLayoutConstraint, with constant: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.25) {
             constraint.constant = constant
             self.view.layoutIfNeeded()
         }
@@ -58,15 +75,22 @@ extension MainViewController {
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
-        let profileImageViewTapGR = UITapGestureRecognizer(target: self, action: #selector(animateToNewView))
+        let swipeLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(swipeToView))
+        swipeLeftGR.direction = .left
+        let swipeRightGR = UISwipeGestureRecognizer(target: self, action: #selector(swipeToView))
+        swipeRightGR.direction = .right
+        self.view.addGestureRecognizer(swipeLeftGR)
+        self.view.addGestureRecognizer(swipeRightGR)
+        
+        let profileImageViewTapGR = UITapGestureRecognizer(target: self, action: #selector(showView))
         headerView.profileImageView.tag = 1
         headerView.profileImageView.addGestureRecognizer(profileImageViewTapGR)
         
-        let findClimberViewTapGR = UITapGestureRecognizer(target: self, action: #selector(animateToNewView))
+        let findClimberViewTapGR = UITapGestureRecognizer(target: self, action: #selector(showView))
         headerView.logoImageView.tag = 2
         headerView.logoImageView.addGestureRecognizer(findClimberViewTapGR)
         
-        let chatViewTapGR = UITapGestureRecognizer(target: self, action: #selector(animateToNewView))
+        let chatViewTapGR = UITapGestureRecognizer(target: self, action: #selector(showView))
         headerView.chatImageView.tag = 3
         headerView.chatImageView.addGestureRecognizer(chatViewTapGR)
         
@@ -97,8 +121,6 @@ extension MainViewController {
         profileView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         profileView.trailingAnchor.constraint(equalTo: findPartnerView.leadingAnchor).isActive = true
         
-        
-
 
     }
     
