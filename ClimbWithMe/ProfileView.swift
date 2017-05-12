@@ -36,7 +36,8 @@ class ProfileView: UIView {
 extension ProfileView {
     
     func setUpSubViews() {
-        
+        self.backgroundColor = .white
+
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.axis = .vertical

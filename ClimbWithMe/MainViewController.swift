@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainViewController: UIViewController {
     
+    let firebaseAuth = FIRAuth.auth()
     let headerView = AppHeaderView()
     let findPartnerView = FindPartnerView()
     let profileView = ProfileView()
     let chatView = ChatView()
     var findPartnerLeadingConstraint = NSLayoutConstraint()
     var user: User?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +56,7 @@ class MainViewController: UIViewController {
     }
     
     func animateByAdding(_ constant: CGFloat) {
-        UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: { 
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
             self.findPartnerLeadingConstraint.constant += constant
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -67,20 +70,51 @@ class MainViewController: UIViewController {
     }
 }
 
+
+// MARK: Profile View
+extension MainViewController {
+    
+    func logoutButtonTapped(_ sender: UIButton) {
+        do {
+            try firebaseAuth?.signOut()
+            self.dismiss(animated: true, completion: { 
+                print("user signed out")
+            })
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+}
+
+// MARK: Main View
 extension MainViewController {
     
     
+}
+
+// MARK: Chat View
+extension MainViewController {
+    
+    
+}
+
+
+// MARK: Setup view layout
+extension MainViewController {
     
     func setUpViews() {
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
+        // Taps and Buttons
         let swipeLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(swipeToView))
         swipeLeftGR.direction = .left
         let swipeRightGR = UISwipeGestureRecognizer(target: self, action: #selector(swipeToView))
         swipeRightGR.direction = .right
         self.view.addGestureRecognizer(swipeLeftGR)
         self.view.addGestureRecognizer(swipeRightGR)
+        
         
         let profileImageViewTapGR = UITapGestureRecognizer(target: self, action: #selector(showView))
         headerView.profileImageView.tag = 1
@@ -94,7 +128,7 @@ extension MainViewController {
         headerView.chatImageView.tag = 3
         headerView.chatImageView.addGestureRecognizer(chatViewTapGR)
         
-        self.view.backgroundColor = .white
+        self.profileView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         
         self.view.addSubview(headerView)
         self.view.addSubview(findPartnerView)
@@ -121,7 +155,6 @@ extension MainViewController {
         profileView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         profileView.trailingAnchor.constraint(equalTo: findPartnerView.leadingAnchor).isActive = true
         
-
     }
     
 }

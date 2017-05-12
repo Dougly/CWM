@@ -35,6 +35,7 @@ class FindPartnerView: UIView {
 extension FindPartnerView {
     
     func setUpSubViews() {
+        self.backgroundColor = .white
         
         settingsStackView.alignment = .fill
         settingsStackView.distribution = .fillEqually

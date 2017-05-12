@@ -25,6 +25,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         setUpViews()
         addObseversForKeyboard()
         setUpGoogleSignIn()
+        GIDSignIn.sharedInstance().signIn()
         
     }
     
@@ -112,11 +113,8 @@ extension LogInViewController: GIDSignInDelegate {
                         print("🔥 user already exists")
                     } else {
                         // create user in database
-                        if let userEmail = user.email {
-                            self.ref.child("users").child(userEmail).setValue(["uid": user.uid, "name" : user.displayName])
-                        } else {
-                            print("no email attatched to google sign in?")
-                        }
+                        self.ref.child("users").child(user.uid).setValue(["email": user.email, "name" : user.displayName])
+                        
                     }
                 })
                 

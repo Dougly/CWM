@@ -48,6 +48,7 @@ extension AppHeaderView {
     func setUpSubViews() {
         
         let width = UIScreen.main.bounds.width
+        self.backgroundColor = .white
         
         logoImageView.image = #imageLiteral(resourceName: "logo_blue")
         logoImageView.isUserInteractionEnabled = true

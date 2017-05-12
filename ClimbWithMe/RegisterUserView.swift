@@ -35,6 +35,7 @@ class RegisterUserView: UIView {
         
         self.backgroundColor = .blue
         
+        firstNameTextField.placeholder = "first name"
         firstNameTextField.borderStyle = .roundedRect
         firstNameTextField.backgroundColor = .white
         firstNameTextField.keyboardType = UIKeyboardType.alphabet
@@ -42,6 +43,7 @@ class RegisterUserView: UIView {
         firstNameTextField.tag = 1
         firstNameTextField.delegate = self
         
+        lastNameTextField.placeholder = "last name"
         lastNameTextField.borderStyle = .roundedRect
         lastNameTextField.backgroundColor = .white
         lastNameTextField.keyboardType = UIKeyboardType.alphabet
@@ -49,6 +51,7 @@ class RegisterUserView: UIView {
         lastNameTextField.tag = 2
         lastNameTextField.delegate = self
         
+        emailTextField.placeholder = "email"
         emailTextField.borderStyle = .roundedRect
         emailTextField.backgroundColor = .white
         emailTextField.keyboardType = UIKeyboardType.emailAddress
@@ -56,6 +59,7 @@ class RegisterUserView: UIView {
         emailTextField.tag = 3
         emailTextField.delegate = self
         
+        passwordTextField.placeholder = "password"
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.backgroundColor = .white
         passwordTextField.keyboardType = UIKeyboardType.alphabet
@@ -63,6 +67,7 @@ class RegisterUserView: UIView {
         passwordTextField.tag = 4
         passwordTextField.delegate = self
         
+        confirmPasswordTextField.placeholder = "confirm password"
         confirmPasswordTextField.borderStyle = .roundedRect
         confirmPasswordTextField.backgroundColor = .white
         confirmPasswordTextField.keyboardType = UIKeyboardType.alphabet
