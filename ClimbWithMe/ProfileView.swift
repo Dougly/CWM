@@ -35,22 +35,17 @@ extension ProfileView {
         self.backgroundColor = .white
 
         
+
         
         logoutButton.setTitle("Log Out", for: .normal)
         logoutButton.backgroundColor = .blue
-        
-        // TODO: change to user selected data
-//        gymsLabel.text = "GYMS      +"
-//        climbingCertifications.text = "CLIMBING CERTIFICATIONS     +"
-//        climbingLevel.text = "CLIMBINGLEVEL   +"
-        
-        
-        
-        
+    
         self.addSubview(pictureAndNameView)
         self.addSubview(tableView)
-        
+        self.addSubview(logoutButton)
+       
         pictureAndNameView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         
         pictureAndNameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

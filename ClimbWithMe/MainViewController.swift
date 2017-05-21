@@ -18,12 +18,17 @@ class MainViewController: UIViewController {
     let profileView = ProfileView()
     let chatView = ChatView()
     var findPartnerLeadingConstraint = NSLayoutConstraint()
+    let profileTableViewDelegate = ProfileTableViewDelegate()
+
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
         
+        profileView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "gymCell")
+        profileView.tableView.delegate = profileTableViewDelegate
+        profileView.tableView.dataSource = profileTableViewDelegate
     }
     
     
