@@ -24,14 +24,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         
-        if let user = user {
-            findPartnerView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
-            findPartnerView.pictureAndNameView.nameLabel.text = user.name
-            findPartnerView.gymLabel.text = "Gym: \(user.gyms.first ?? "No Gyms")"
-            findPartnerView.typeLabel.text = "Type: \(user.certifications.first?.rawValue ?? "No Certificiation")"
-        }
-        
-        
     }
     
     
@@ -82,6 +74,13 @@ class MainViewController: UIViewController {
 // MARK: Profile View
 extension MainViewController {
     
+    func setupProfileView() {
+        if let user = user {
+            profileView.pictureAndNameView.nameLabel.text = user.name
+            profileView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
+        }
+    }
+    
     func logoutButtonTapped(_ sender: UIButton) {
         do {
             try firebaseAuth?.signOut()
@@ -98,12 +97,26 @@ extension MainViewController {
 // MARK: Main View
 extension MainViewController {
     
+    func setupMainView() {
+        
+        if let user = user {
+            findPartnerView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
+            findPartnerView.pictureAndNameView.nameLabel.text = user.name
+            findPartnerView.gymLabel.text = "Gym: \(user.gyms.first ?? "No Gyms")"
+            findPartnerView.typeLabel.text = "Type: \(user.certifications.first?.rawValue ?? "No Certificiation")"
+            findPartnerView.timeLabel.text = "--:--"
+        }
+        
+    }
     
 }
 
 // MARK: Chat View
 extension MainViewController {
     
+    func setUpChatView() {
+        
+    }
     
 }
 
@@ -112,6 +125,10 @@ extension MainViewController {
 extension MainViewController {
     
     func setUpViews() {
+        
+        setupProfileView()
+        setupMainView()
+        setUpChatView()
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         self.view.backgroundColor = .white

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		111581451ED129F700E3D948 /* Certification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111581441ED129F700E3D948 /* Certification.swift */; };
+		111581471ED20D4100E3D948 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111581461ED20D4100E3D948 /* ProfileTableViewCell.swift */; };
 		111E91B01EB594160072D98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E91AF1EB594160072D98E /* AppDelegate.swift */; };
 		111E91B71EB594170072D98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111E91B61EB594170072D98E /* Assets.xcassets */; };
 		111E91BA1EB594170072D98E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111E91B81EB594170072D98E /* LaunchScreen.storyboard */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		111581441ED129F700E3D948 /* Certification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Certification.swift; sourceTree = "<group>"; };
+		111581461ED20D4100E3D948 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		111E91AC1EB594160072D98E /* ClimbWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClimbWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		111E91AF1EB594160072D98E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		111E91B61EB594170072D98E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				1154C4F81EBE3C6E00E45C05 /* AppHeaderView.swift */,
 				1154C4F61EBE3BE800E45C05 /* FindPartnerView.swift */,
 				11C386B91EC51B98009B892B /* ProfileView.swift */,
+				111581461ED20D4100E3D948 /* ProfileTableViewCell.swift */,
 				11C386BB1EC51BD3009B892B /* ChatView.swift */,
 				111E91B81EB594170072D98E /* LaunchScreen.storyboard */,
 			);
@@ -409,6 +412,7 @@
 				11BDD4151EB6C8920018890A /* LogInView.swift in Sources */,
 				11C386B01EC3C0FE009B892B /* DataStore.swift in Sources */,
 				11C386BC1EC51BD3009B892B /* ChatView.swift in Sources */,
+				111581471ED20D4100E3D948 /* ProfileTableViewCell.swift in Sources */,
 				11EA07031EB6B7A50040F01E /* UIViewExtension.swift in Sources */,
 				1154C4F71EBE3BE800E45C05 /* FindPartnerView.swift in Sources */,
 				1154C4F91EBE3C6E00E45C05 /* AppHeaderView.swift in Sources */,

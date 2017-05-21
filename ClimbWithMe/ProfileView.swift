@@ -18,6 +18,7 @@ class ProfileView: UIView {
     let climbingLevel = UILabel()
     let logoutButton = UIButton(type: .system)
     let viewType = ViewType.profileView
+    let tableView = UITableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,9 +47,9 @@ extension ProfileView {
         logoutButton.backgroundColor = .blue
         
         // TODO: change to user selected data
-        gymsLabel.text = "GYMS"
-        climbingCertifications.text = "CLIMBING CERTIFICATIONS"
-        climbingLevel.text = "CLIMBINGLEVEL"
+        gymsLabel.text = "GYMS      +"
+        climbingCertifications.text = "CLIMBING CERTIFICATIONS     +"
+        climbingLevel.text = "CLIMBINGLEVEL   +"
         
         
         stackView.addArrangedSubview(gymsLabel)
