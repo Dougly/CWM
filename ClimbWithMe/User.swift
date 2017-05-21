@@ -14,6 +14,8 @@ class User {
     var userEmail: String
     var name: String
     var profileImage: UIImage? = nil
+    var gyms: [String] = []
+    var certifications: [Certification] = []
     
     init(uid: String, userEmail: String, name: String) {
         self.uid = uid

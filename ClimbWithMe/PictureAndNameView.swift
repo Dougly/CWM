@@ -33,7 +33,6 @@ extension PictureAndNameView {
         pictureImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
         
         nameLabel.font = UIFont(name: "Helvetica", size: 12)
-        nameLabel.text = "Doug Galante"
         nameLabel.backgroundColor = .gray
         
         self.addSubview(pictureImageView)

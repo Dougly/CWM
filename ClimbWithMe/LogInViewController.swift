@@ -113,17 +113,16 @@ extension LogInViewController: GIDSignInDelegate {
                         print("🔥 user already exists")
                     } else {
                         // create user in database
-                        self.ref.child("users").child(user.uid).setValue(["email": user.email, "name" : user.displayName])
+                        self.ref.child("users").child(user.uid).setValue(["email": email, "name" : user.displayName])
                         
                     }
                 })
                 
                 
                 let mainVC = MainViewController()
+                mainVC.user = loggedInUser
                 self.present(mainVC, animated: true, completion: {
                     print("transitioned to mainVC after logging in with google")
-                    mainVC.user = loggedInUser
-                    
                 })
             }
         }

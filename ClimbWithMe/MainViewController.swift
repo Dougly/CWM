@@ -24,6 +24,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         
+        if let user = user {
+            findPartnerView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
+            findPartnerView.pictureAndNameView.nameLabel.text = user.name
+            findPartnerView.gymLabel.text = "Gym: \(user.gyms.first ?? "No Gyms")"
+            findPartnerView.typeLabel.text = "Type: \(user.certifications.first?.rawValue ?? "No Certificiation")"
+        }
+        
+        
     }
     
     
@@ -106,6 +114,7 @@ extension MainViewController {
     func setUpViews() {
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        self.view.backgroundColor = .white
         
         // Taps and Buttons
         let swipeLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(swipeToView))

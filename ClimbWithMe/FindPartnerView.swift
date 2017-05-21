@@ -44,12 +44,6 @@ extension FindPartnerView {
         findPartnerButton.setTitle("Find Partner", for: .normal)
         findPartnerButton.backgroundColor = .blue
         
-        // TODO: change to user selected data
-        gymLabel.text = "Gym: The Cliffs"
-        timeLabel.text = "Time: 2:00pm"
-        typeLabel.text = "Type: Sport Climbing"
-        
-        
         settingsStackView.addArrangedSubview(gymLabel)
         settingsStackView.addArrangedSubview(timeLabel)
         settingsStackView.addArrangedSubview(typeLabel)
