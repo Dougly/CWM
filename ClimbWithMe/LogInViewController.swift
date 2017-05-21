@@ -40,7 +40,7 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
                 let mainVC = MainViewController()
-                mainVC.user = User(uid: user.uid, userEmail: (user.email ?? ""), name: (user.displayName ?? ""))
+                self.dataStore.user = User(uid: user.uid, userEmail: (user.email ?? ""), name: (user.displayName ?? ""))
                 self.present(mainVC, animated: true, completion: nil)
             }
         }
@@ -69,7 +69,7 @@ extension LogInViewController: GIDSignInDelegate {
                 } else if let user = user {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
                     let mainVC = MainViewController()
-                    mainVC.user = loggedInUser
+                    self.dataStore.user = loggedInUser
                     self.present(mainVC, animated: true, completion: nil)
                 }
             })
@@ -120,7 +120,7 @@ extension LogInViewController: GIDSignInDelegate {
                 
                 
                 let mainVC = MainViewController()
-                mainVC.user = loggedInUser
+                self.dataStore.user = loggedInUser
                 self.present(mainVC, animated: true, completion: {
                     print("transitioned to mainVC after logging in with google")
                 })

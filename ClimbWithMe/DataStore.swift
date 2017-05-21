@@ -15,6 +15,7 @@ class DataStore {
     
     private init() {}
     
+    var user: User?
 
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {

@@ -11,13 +11,13 @@ import FirebaseAuth
 
 class MainViewController: UIViewController {
     
+    let dataStore = DataStore.sharedInstance
     let firebaseAuth = FIRAuth.auth()
     let headerView = AppHeaderView()
     let findPartnerView = FindPartnerView()
     let profileView = ProfileView()
     let chatView = ChatView()
     var findPartnerLeadingConstraint = NSLayoutConstraint()
-    var user: User?
 
     
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     func setupProfileView() {
-        if let user = user {
+        if let user = dataStore.user {
             profileView.pictureAndNameView.nameLabel.text = user.name
             profileView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
         }
@@ -99,7 +99,7 @@ extension MainViewController {
     
     func setupMainView() {
         
-        if let user = user {
+        if let user = dataStore.user {
             findPartnerView.pictureAndNameView.pictureImageView.image = user.profileImage ?? #imageLiteral(resourceName: "ic_person_48pt")
             findPartnerView.pictureAndNameView.nameLabel.text = user.name
             findPartnerView.gymLabel.text = "Gym: \(user.gyms.first ?? "No Gyms")"
