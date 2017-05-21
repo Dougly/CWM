@@ -13,8 +13,10 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
     let dataStore = DataStore.sharedInstance
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 4
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -30,4 +32,8 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
         
     }
     
+}
+
+enum sectionType {
+    case gyms, certifications, skillLevel, logout
 }
