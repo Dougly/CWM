@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
         setUpViews()
         
         profileView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "gymCell")
+        profileView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "headerCell")
         profileView.tableView.delegate = profileTableViewDelegate
         profileView.tableView.dataSource = profileTableViewDelegate
     }
