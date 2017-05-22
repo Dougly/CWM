@@ -27,6 +27,8 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         setUpGoogleSignIn()
         GIDSignIn.sharedInstance().signIn()
         
+        self.navigationItem.title = "Log In"
+        
     }
     
     
@@ -70,7 +72,7 @@ extension LogInViewController: GIDSignInDelegate {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
                     let mainVC = MainViewController()
                     self.dataStore.user = loggedInUser
-                    self.present(mainVC, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(mainVC, animated: true)
                 }
             })
         }
@@ -121,9 +123,7 @@ extension LogInViewController: GIDSignInDelegate {
                 
                 let mainVC = MainViewController()
                 self.dataStore.user = loggedInUser
-                self.present(mainVC, animated: true, completion: {
-                    print("transitioned to mainVC after logging in with google")
-                })
+                self.navigationController?.pushViewController(mainVC, animated: true)
             }
         }
     }
@@ -170,21 +170,9 @@ extension LogInViewController {
     }
     
     func setUpViews() {
-//        let screenHeight = UIScreen.main.bounds.height
-        
         self.view.backgroundColor = .white
         self.view.addSubview(logInView)
         view.setEqualConstraints(for: logInView)
-        
-        
-        // Google Sign In Button
-//        self.view.addSubview(googleSignInButton)
-//        
-//        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
-//        googleSignInButton.centerXAnchor.constraint(equalTo: self.logInView.centerXAnchor).isActive = true
-//        googleSignInButton.centerYAnchor.constraint(equalTo: self.logInView.centerYAnchor, constant: screenHeight * 0.2).isActive = true
-//        googleSignInButton.widthAnchor.constraint(equalTo: logInView.logInStackView.widthAnchor).isActive = true
-//        googleSignInButton.heightAnchor.constraint(equalTo: googleSignInButton.widthAnchor, multiplier: 0.5).isActive = true
         
         // Register New Account Button
         logInView.registerButton.addTarget(self, action: #selector(presentRegisterUserVC), for: .touchUpInside)

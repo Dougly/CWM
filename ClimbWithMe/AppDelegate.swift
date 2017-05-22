@@ -25,8 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set up window and root VC
         let rootViewController = LogInViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.isNavigationBarHidden = false
+        
+        
         window = UIWindow()
-        window?.rootViewController = rootViewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
         return true
