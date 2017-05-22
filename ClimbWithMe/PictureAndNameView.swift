@@ -22,10 +22,6 @@ class PictureAndNameView: UIView {
         super.init(coder: aDecoder)
         setUpSubviews()
     }
-
-}
-
-extension PictureAndNameView {
     
     func setUpSubviews() {
         
@@ -51,7 +47,6 @@ extension PictureAndNameView {
         nameLabel.heightAnchor.constraint(equalTo: pictureImageView.heightAnchor).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     
-        
     }
     
 }

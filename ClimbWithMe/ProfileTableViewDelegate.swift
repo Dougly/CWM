@@ -19,15 +19,7 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 5)
-//        let view = UIView(frame: rect)
-//        view.backgroundColor = .red
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        view.addSubview(label)
-//        view.setEqualConstraints(for: label)
-//        
-        //let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell")
+
         let header = tableView.dequeueReusableCell(withIdentifier: "headerCell")
         
         if let header = header {
@@ -38,13 +30,6 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
             print("no header view")
         }
         
-//        switch section {
-//        case 0: label.text = "Gyms"
-//        case 1: label.text = "Certifications"
-//        case 2: label.text = "Ability Level"
-//        case 3: label.text = "Log Out"
-//        default: label.text = "error"
-//        }
         return header
     }
     

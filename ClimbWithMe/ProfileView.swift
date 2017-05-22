@@ -11,7 +11,6 @@ import UIKit
 class ProfileView: UIView {
     
     let pictureAndNameView = PictureAndNameView()
-    let logoutButton = UIButton(type: .system)
     let viewType = ViewType.profileView
     let tableView = UITableView()
     
@@ -26,27 +25,16 @@ class ProfileView: UIView {
         setUpSubViews()
     }
     
-}
-
-
-extension ProfileView {
     
     func setUpSubViews() {
         self.backgroundColor = .white
-
-        
-
-        
-        logoutButton.setTitle("Log Out", for: .normal)
-        logoutButton.backgroundColor = .blue
     
         self.addSubview(pictureAndNameView)
         self.addSubview(tableView)
-        self.addSubview(logoutButton)
        
         pictureAndNameView.translatesAutoresizingMaskIntoConstraints = false
+        pictureAndNameView.backgroundColor = .black
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
         
         pictureAndNameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         pictureAndNameView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -55,14 +43,8 @@ extension ProfileView {
         
         tableView.topAnchor.constraint(equalTo: pictureAndNameView.bottomAnchor).isActive = true
         tableView.centerXAnchor.constraint(equalTo: pictureAndNameView.centerXAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/3).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: pictureAndNameView.widthAnchor).isActive = true
-        
-        logoutButton.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
-        logoutButton.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
-        logoutButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 2/9).isActive = true
-        logoutButton.widthAnchor.constraint(equalTo: tableView.widthAnchor).isActive = true
-        
         
     }
 }

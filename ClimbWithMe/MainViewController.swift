@@ -87,6 +87,8 @@ extension MainViewController {
         }
     }
     
+    
+    // Functionality for Logoout Button
     func logoutButtonTapped(_ sender: UIButton) {
         do {
             try firebaseAuth?.signOut()
@@ -159,8 +161,6 @@ extension MainViewController {
         let chatViewTapGR = UITapGestureRecognizer(target: self, action: #selector(showView))
         headerView.chatImageView.tag = 3
         headerView.chatImageView.addGestureRecognizer(chatViewTapGR)
-        
-        self.profileView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         
         self.view.addSubview(headerView)
         self.view.addSubview(findPartnerView)
