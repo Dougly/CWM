@@ -10,12 +10,12 @@ import UIKit
 
 extension UIView {
     
-    func setEqualConstraints(for view: UIView) {
+    func setEqualConstraints(for view: UIView, navBarHeight: CGFloat) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        view.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        view.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: self.topAnchor, constant: navBarHeight).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
 }

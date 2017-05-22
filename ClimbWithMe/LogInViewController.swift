@@ -172,7 +172,7 @@ extension LogInViewController {
     func setUpViews() {
         self.view.backgroundColor = .white
         self.view.addSubview(logInView)
-        view.setEqualConstraints(for: logInView)
+        view.setEqualConstraints(for: logInView, navBarHeight: self.navigationController?.navigationBar.frame.size.height ?? 0)
         
         // Register New Account Button
         logInView.registerButton.addTarget(self, action: #selector(presentRegisterUserVC), for: .touchUpInside)
