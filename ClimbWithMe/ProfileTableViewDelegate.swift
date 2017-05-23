@@ -23,7 +23,6 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
         let header = tableView.dequeueReusableCell(withIdentifier: "headerCell")
         
         if let header = header {
-            print("header view exists")
             header.textLabel?.text = "TESTTTT"
             header.backgroundColor = .red
         } else {

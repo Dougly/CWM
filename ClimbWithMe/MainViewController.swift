@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MainViewController: UIViewController {
     
     let dataStore = DataStore.sharedInstance
@@ -22,12 +23,21 @@ class MainViewController: UIViewController {
     }
     
     func presentProfileView() {
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionFromRight
+//        
+//        self.navigationController?.view.layer.add(transition, forKey: nil)
         let profileVC = ProfileViewContoller()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+//        self.navigationController?.pushViewController(profileVC, animated: false)
+        self.navigationController?.push(viewController: profileVC, transitionType: kCATransitionPush, subtype: kCATransitionFromLeft, duration: 0.3)
+        
     }
     
     func presentChatView() {
-        
+        let chatVC = ChatViewController()
+        self.navigationController?.pushViewController(chatVC, animated: true)
     }
     
     func setupNavigationBar() {
@@ -36,8 +46,18 @@ class MainViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
         self.navigationItem.titleView = imageView
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_person_48pt"), style: .plain, target: self, action: #selector(presentProfileView))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_chat_48pt"), style: .plain, target: self, action: #selector(presentChatView))
+        
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        leftButton.setImage(#imageLiteral(resourceName: "ic_person_48pt"), for: .normal)
+        leftButton.addTarget(self, action: #selector(presentProfileView), for: .touchUpInside)
+        leftButton.clipsToBounds = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        
+        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        rightButton.setImage(#imageLiteral(resourceName: "ic_chat_48pt"), for: .normal)
+        rightButton.addTarget(self, action: #selector(presentChatView), for: .touchUpInside)
+        rightButton.clipsToBounds = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
         
     }
     
@@ -59,6 +79,44 @@ class MainViewController: UIViewController {
         self.view.setEqualConstraints(for: findPartnerView, navBarHeight: self.navigationController?.navigationBar.frame.size.height ?? 0)
 
         
+    }
+    
+}
+
+
+
+public extension UINavigationController {
+    
+    /**
+     Pop current view controller to previous view controller.
+     
+     - parameter type:     transition animation type.
+     - parameter duration: transition animation duration.
+     */
+    func pop(transitionType type: String, subtype: String, duration: CFTimeInterval) {
+        self.addTransition(transitionType: type, subtype: subtype, duration: duration)
+        self.popViewController(animated: false)
+    }
+    
+    /**
+     Push a new view controller on the view controllers's stack.
+     
+     - parameter vc:       view controller to push.
+     - parameter type:     transition animation type.
+     - parameter duration: transition animation duration.
+     */
+    func push(viewController vc: UIViewController, transitionType type: String, subtype: String, duration: CFTimeInterval) {
+        self.addTransition(transitionType: type, subtype: subtype, duration: duration)
+        self.pushViewController(vc, animated: false)
+    }
+    
+    private func addTransition(transitionType type: String, subtype: String, duration: CFTimeInterval) {
+        let transition = CATransition()
+        transition.duration = duration
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = type
+        transition.subtype = subtype
+        self.view.layer.add(transition, forKey: nil)
     }
     
 }

@@ -171,8 +171,8 @@
 				11EA06F21EB6A8770040F01E /* LogInViewController.swift */,
 				1154C4F41EBE38C200E45C05 /* MainViewController.swift */,
 				112342AE1ED39B6700591536 /* ProfileViewController.swift */,
-				111581481ED20EBA00E3D948 /* ProfileTableViewDelegate.swift */,
 				112342B01ED39E9800591536 /* ChatViewController.swift */,
+				111581481ED20EBA00E3D948 /* ProfileTableViewDelegate.swift */,
 				111E91AF1EB594160072D98E /* AppDelegate.swift */,
 			);
 			name = Controller;

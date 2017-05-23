@@ -33,7 +33,7 @@ class ProfileViewContoller: UIViewController {
     }
     
     func presentFindPartnerVC() {
-        let _ = navigationController?.popViewController(animated: true)
+        self.navigationController?.pop(transitionType: kCATransitionPush, subtype: kCATransitionFromRight, duration: 0.3)
     }
     
     func setupNavigationBar() {
@@ -42,8 +42,15 @@ class ProfileViewContoller: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
         self.navigationItem.titleView = imageView
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "logo_blue"), style: .plain, target: self, action: #selector(presentFindPartnerVC))
+        
+        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        rightButton.setImage(#imageLiteral(resourceName: "logo_blue"), for: .normal)
+        rightButton.addTarget(self, action: #selector(presentFindPartnerVC), for: .touchUpInside)
+        rightButton.clipsToBounds = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        
+        let leftButton = UIButton()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         
     }
     
