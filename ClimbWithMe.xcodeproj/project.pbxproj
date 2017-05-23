@@ -16,6 +16,7 @@
 		111E91C51EB594180072D98E /* ClimbWithMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E91C41EB594180072D98E /* ClimbWithMeTests.swift */; };
 		112342AF1ED39B6700591536 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112342AE1ED39B6700591536 /* ProfileViewController.swift */; };
 		112342B11ED39E9800591536 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112342B01ED39E9800591536 /* ChatViewController.swift */; };
+		112342B31ED3A7F900591536 /* BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112342B21ED3A7F900591536 /* BarButtonItems.swift */; };
 		1154C4F21EBD40DE00E45C05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1154C4F11EBD40DE00E45C05 /* GoogleService-Info.plist */; };
 		1154C4F31EBD40DE00E45C05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1154C4F11EBD40DE00E45C05 /* GoogleService-Info.plist */; };
 		1154C4F51EBE38C200E45C05 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154C4F41EBE38C200E45C05 /* MainViewController.swift */; };
@@ -62,6 +63,7 @@
 		111E91C61EB594180072D98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		112342AE1ED39B6700591536 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		112342B01ED39E9800591536 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		112342B21ED3A7F900591536 /* BarButtonItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItems.swift; sourceTree = "<group>"; };
 		1154C4F11EBD40DE00E45C05 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1154C4F41EBE38C200E45C05 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1154C4F61EBE3BE800E45C05 /* FindPartnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPartnerView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				11EA07021EB6B7A50040F01E /* UIViewExtension.swift */,
+				112342B21ED3A7F900591536 /* BarButtonItems.swift */,
 				11BDD4141EB6C8920018890A /* LogInView.swift */,
 				11C386B11EC3C2BF009B892B /* RegisterUserView.swift */,
 				1154C4FA1EBE57E700E45C05 /* PictureAndNameView.swift */,
@@ -436,6 +439,7 @@
 				11C386AB1EC11D6A009B892B /* FirbaseAPIClient.swift in Sources */,
 				11C386B41EC3C33F009B892B /* RegisterUserViewController.swift in Sources */,
 				111E91B01EB594160072D98E /* AppDelegate.swift in Sources */,
+				112342B31ED3A7F900591536 /* BarButtonItems.swift in Sources */,
 				11C386BA1EC51B98009B892B /* ProfileView.swift in Sources */,
 				11EA06F31EB6A8770040F01E /* LogInViewController.swift in Sources */,
 				1154C4F51EBE38C200E45C05 /* MainViewController.swift in Sources */,
