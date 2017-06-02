@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         // Set up window and root VC
-        let rootViewController = NavigationInterfaceViewController()
+        let rootViewController = LogInViewController()
         window = UIWindow()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()

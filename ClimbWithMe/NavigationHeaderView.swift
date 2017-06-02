@@ -55,7 +55,7 @@ class NavigationHeaderView: UIView {
     func commonInit() {
         
         
-        self.backgroundColor = .red
+        self.backgroundColor = .white
         
         leftImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
         centerImageView.image = #imageLiteral(resourceName: "logo_blue")

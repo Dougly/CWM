@@ -27,8 +27,6 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         setUpGoogleSignIn()
         GIDSignIn.sharedInstance().signIn()
         
-        self.navigationItem.title = "Log In"
-        
     }
     
     
@@ -41,9 +39,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         // THIS IS BROKEN -- SOMETHING ABOUT PRESENTING VC on VC whos view is not in window heirarchy
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
-                let findPartnerVC = FindPartnerViewController()
+                let navVC = NavigationInterfaceViewController()
                 self.dataStore.user = User(uid: user.uid, userEmail: (user.email ?? ""), name: (user.displayName ?? ""))
-                self.present(findPartnerVC, animated: true, completion: nil)
+                self.present(navVC, animated: true, completion: nil)
             }
         }
     }
@@ -70,9 +68,9 @@ extension LogInViewController: GIDSignInDelegate {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
-                    let findPartnerVC = FindPartnerViewController()
+                    let navVC = NavigationInterfaceViewController()
                     self.dataStore.user = loggedInUser
-                    self.navigationController?.pushViewController(findPartnerVC, animated: true)
+                    self.present(navVC, animated: true, completion: nil)
                 }
             })
         }
@@ -121,9 +119,9 @@ extension LogInViewController: GIDSignInDelegate {
                 })
                 
                 
-                let findPartnerVC = FindPartnerViewController()
+                let navVC = NavigationInterfaceViewController()
                 self.dataStore.user = loggedInUser
-                self.navigationController?.pushViewController(findPartnerVC, animated: true)
+                self.present(navVC, animated: true, completion: nil)
             }
         }
     }
