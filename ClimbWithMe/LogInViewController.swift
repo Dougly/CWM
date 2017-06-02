@@ -41,9 +41,9 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
         // THIS IS BROKEN -- SOMETHING ABOUT PRESENTING VC on VC whos view is not in window heirarchy
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
-                let mainVC = MainViewController()
+                let findPartnerVC = FindPartnerViewController()
                 self.dataStore.user = User(uid: user.uid, userEmail: (user.email ?? ""), name: (user.displayName ?? ""))
-                self.present(mainVC, animated: true, completion: nil)
+                self.present(findPartnerVC, animated: true, completion: nil)
             }
         }
     }
@@ -70,9 +70,9 @@ extension LogInViewController: GIDSignInDelegate {
                     print("🔥 failed to sign in user with email and password \(error)")
                 } else if let user = user {
                     let loggedInUser = User(uid: user.uid, userEmail: email, name: "place holder")
-                    let mainVC = MainViewController()
+                    let findPartnerVC = FindPartnerViewController()
                     self.dataStore.user = loggedInUser
-                    self.navigationController?.pushViewController(mainVC, animated: true)
+                    self.navigationController?.pushViewController(findPartnerVC, animated: true)
                 }
             })
         }
@@ -121,9 +121,9 @@ extension LogInViewController: GIDSignInDelegate {
                 })
                 
                 
-                let mainVC = MainViewController()
+                let findPartnerVC = FindPartnerViewController()
                 self.dataStore.user = loggedInUser
-                self.navigationController?.pushViewController(mainVC, animated: true)
+                self.navigationController?.pushViewController(findPartnerVC, animated: true)
             }
         }
     }

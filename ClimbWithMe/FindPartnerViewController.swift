@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MainViewController: UIViewController {
+class FindPartnerViewController: UIViewController {
     
     let dataStore = DataStore.sharedInstance
     let findPartnerView = FindPartnerView()
