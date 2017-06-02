@@ -24,14 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         // Set up window and root VC
-        let rootViewController = LogInViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.isNavigationBarHidden = false
-        navigationController.navigationBar.backgroundColor = .white
-        
-        
+        let rootViewController = NavigationInterfaceViewController()
         window = UIWindow()
-        window?.rootViewController = navigationController
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
         return true

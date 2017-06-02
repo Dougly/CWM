@@ -10,6 +10,7 @@ import UIKit
 
 class NavigationHeaderView: UIView {
     
+    let spacing = (UIScreen.main.bounds.width / 2) - (UIScreen.main.bounds.height * 0.5)
     let leftImageView = UIImageView()
     let centerImageView = UIImageView()
     let rightImageView = UIImageView()
@@ -26,29 +27,35 @@ class NavigationHeaderView: UIView {
         commonInit()
     }
     
+    
     func tappedImageView(_ sender: UITapGestureRecognizer) {
-        let screenWidth = UIScreen.main.bounds.width
         if let senderView = sender.view {
             switch senderView.tag {
-            case 1: animateBySettingConstant(to: screenWidth)
+            case 1: animateBySettingConstant(to: -spacing)
             case 2: animateBySettingConstant(to: 0)
-            case 3: animateBySettingConstant(to: -screenWidth)
+            case 3: animateBySettingConstant(to: spacing)
             default: break
             }
         }
-        
     }
     
+    
     func animateBySettingConstant(to constant: CGFloat) {
-        UIView.animate(withDuration: 0.5) { 
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
             self.centerXConstraint.constant = constant
             self.layoutIfNeeded()
+        }) { (success) in
+            if success {
+                // TO DO
+            }
         }
     }
+
     
     func commonInit() {
         
-        let screenWidth = UIScreen.main.bounds.width
+        
+        self.backgroundColor = .red
         
         leftImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
         centerImageView.image = #imageLiteral(resourceName: "logo_blue")
@@ -76,12 +83,12 @@ class NavigationHeaderView: UIView {
         centerImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         centerImageView.widthAnchor.constraint(equalTo: centerImageView.heightAnchor).isActive = true
         
-        leftImageView.centerXAnchor.constraint(equalTo: centerImageView.centerXAnchor, constant: -screenWidth).isActive = true
+        leftImageView.centerXAnchor.constraint(equalTo: centerImageView.centerXAnchor, constant: spacing).isActive = true
         leftImageView.centerYAnchor.constraint(equalTo: centerImageView.centerYAnchor).isActive = true
         leftImageView.widthAnchor.constraint(equalTo: centerImageView.widthAnchor).isActive = true
         leftImageView.heightAnchor.constraint(equalTo: centerImageView.heightAnchor).isActive = true
         
-        rightImageView.centerXAnchor.constraint(equalTo: centerImageView.centerXAnchor, constant: screenWidth).isActive = true
+        rightImageView.centerXAnchor.constraint(equalTo: centerImageView.centerXAnchor, constant: -spacing).isActive = true
         rightImageView.centerYAnchor.constraint(equalTo: centerImageView.centerYAnchor).isActive = true
         rightImageView.widthAnchor.constraint(equalTo: centerImageView.widthAnchor).isActive = true
         rightImageView.heightAnchor.constraint(equalTo: centerImageView.heightAnchor).isActive = true

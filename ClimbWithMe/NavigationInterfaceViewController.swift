@@ -10,7 +10,7 @@ import UIKit
 
 class NavigationInterfaceViewController: UIViewController {
     
-    let navSegmentControl = UISegmentedControl()
+    let navigationHeaderView = NavigationHeaderView()
     let containerView = UIView()
     
     lazy var profileVC: ProfileViewContoller = {
@@ -38,10 +38,10 @@ class NavigationInterfaceViewController: UIViewController {
         findPartnerVC.view.isHidden = false
     }
     
-    func addAsChildVC(childVC: UIViewController) {
+    private func addAsChildVC(childVC: UIViewController) {
         addChildViewController(childVC)
         containerView.addSubview(childVC.view)
-        childVC.view.frame = containerView.frame
+        containerView.setEqualConstraints(for: childVC.view, navBarHeight: 0)
         childVC.didMove(toParentViewController: self)
     }
     
@@ -56,30 +56,26 @@ class NavigationInterfaceViewController: UIViewController {
 //        redVC.view.isHidden = sender.selectedSegmentIndex == 0
     }
     
-    func setupViews() {
+    private func setupViews() {
         
-        let screenHeight = UIScreen.main.bounds.height
-        
-        navSegmentControl.addTarget(self, action: #selector(madeSelection), for: .valueChanged)
-        
-        navSegmentControl.insertSegment(withTitle: "blue", at: 0, animated: false)
-        navSegmentControl.insertSegment(withTitle: "red", at: 1, animated: false)
-        navSegmentControl.selectedSegmentIndex = 0
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        self.view.backgroundColor = .gray
         
         view.addSubview(containerView)
-        view.addSubview(navSegmentControl)
+        view.addSubview(navigationHeaderView)
+        
+        navigationHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        navigationHeaderView.topAnchor.constraint(equalTo: view.topAnchor, constant: statusBarHeight).isActive = true
+        navigationHeaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        navigationHeaderView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        navigationHeaderView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        
-        navSegmentControl.translatesAutoresizingMaskIntoConstraints = false
-        navSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        navSegmentControl.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: screenHeight / -2.5).isActive = true
+        containerView.topAnchor.constraint(equalTo: navigationHeaderView.bottomAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
     }
 
-    
 }

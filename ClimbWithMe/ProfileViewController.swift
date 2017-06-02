@@ -33,7 +33,7 @@ class ProfileViewContoller: UIViewController {
     }
     
     func presentFindPartnerVC() {
-        self.navigationController?.pop(transitionType: kCATransitionPush, subtype: kCATransitionFromRight, duration: 0.3)
+        //self.navigationController?.pop(transitionType: kCATransitionPush, subtype: kCATransitionFromRight, duration: 0.3)
     }
     
     func setupNavigationBar() {

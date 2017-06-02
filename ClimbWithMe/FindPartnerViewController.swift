@@ -29,9 +29,9 @@ class FindPartnerViewController: UIViewController {
 //        transition.type = kCATransitionFromRight
 //        
 //        self.navigationController?.view.layer.add(transition, forKey: nil)
-        let profileVC = ProfileViewContoller()
+        //let profileVC = ProfileViewContoller()
 //        self.navigationController?.pushViewController(profileVC, animated: false)
-        self.navigationController?.push(viewController: profileVC, transitionType: kCATransitionPush, subtype: kCATransitionFromLeft, duration: 0.3)
+        //self.navigationController?.push(viewController: profileVC, transitionType: kCATransitionPush, subtype: kCATransitionFromLeft, duration: 0.3)
         
     }
     
@@ -76,47 +76,8 @@ class FindPartnerViewController: UIViewController {
         self.view.backgroundColor = .white
         
         self.view.addSubview(findPartnerView)
-        self.view.setEqualConstraints(for: findPartnerView, navBarHeight: self.navigationController?.navigationBar.frame.size.height ?? 0)
-
+        self.view.setEqualConstraints(for: findPartnerView, navBarHeight: 0)
         
-    }
-    
-}
-
-
-
-public extension UINavigationController {
-    
-    /**
-     Pop current view controller to previous view controller.
-     
-     - parameter type:     transition animation type.
-     - parameter duration: transition animation duration.
-     */
-    func pop(transitionType type: String, subtype: String, duration: CFTimeInterval) {
-        self.addTransition(transitionType: type, subtype: subtype, duration: duration)
-        self.popViewController(animated: false)
-    }
-    
-    /**
-     Push a new view controller on the view controllers's stack.
-     
-     - parameter vc:       view controller to push.
-     - parameter type:     transition animation type.
-     - parameter duration: transition animation duration.
-     */
-    func push(viewController vc: UIViewController, transitionType type: String, subtype: String, duration: CFTimeInterval) {
-        self.addTransition(transitionType: type, subtype: subtype, duration: duration)
-        self.pushViewController(vc, animated: false)
-    }
-    
-    private func addTransition(transitionType type: String, subtype: String, duration: CFTimeInterval) {
-        let transition = CATransition()
-        transition.duration = duration
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = type
-        transition.subtype = subtype
-        self.view.layer.add(transition, forKey: nil)
     }
     
 }
