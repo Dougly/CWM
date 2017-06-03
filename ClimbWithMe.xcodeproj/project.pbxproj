@@ -171,8 +171,8 @@
 		11EA06EF1EB698490040F01E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				11C386B31EC3C33F009B892B /* RegisterUserViewController.swift */,
 				1148D39B1EE20AF8000411BC /* NavigationInterfaceViewController.swift */,
+				11C386B31EC3C33F009B892B /* RegisterUserViewController.swift */,
 				11EA06F21EB6A8770040F01E /* LogInViewController.swift */,
 				1154C4F41EBE38C200E45C05 /* FindPartnerViewController.swift */,
 				112342AE1ED39B6700591536 /* ProfileViewController.swift */,

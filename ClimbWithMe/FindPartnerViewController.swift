@@ -22,7 +22,6 @@ class FindPartnerViewController: UIViewController {
     }
     
     
-    
     func setUpViews() {
                 
         if let user = dataStore.user {

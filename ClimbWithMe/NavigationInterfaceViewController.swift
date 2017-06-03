@@ -11,6 +11,7 @@ import UIKit
 class NavigationInterfaceViewController: UIViewController {
     
     let navigationHeaderView = NavigationHeaderView()
+    var visibleVC = UIViewController()
     let containerView = UIView()
     
     lazy var profileVC: ProfileViewContoller = {
@@ -36,25 +37,41 @@ class NavigationInterfaceViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         findPartnerVC.view.isHidden = false
+        visibleVC = findPartnerVC
     }
     
     private func addAsChildVC(childVC: UIViewController) {
         addChildViewController(childVC)
         containerView.addSubview(childVC.view)
-        containerView.setEqualConstraints(for: childVC.view, navBarHeight: 0)
+        childVC.view.frame = containerView.frame
+        //containerView.setEqualConstraints(for: childVC.view, navBarHeight: 0)
         childVC.didMove(toParentViewController: self)
     }
     
-    private func removeAsChildVC(childVC: UIViewController) {
-        childVC.willMove(toParentViewController: nil)
-        childVC.view.removeFromSuperview()
-        childVC.removeFromParentViewController()
+    func tappedImageView(_ sender: UITapGestureRecognizer) {
+        let spacing = (navigationHeaderView.frame.width / 2) - (navigationHeaderView.frame.height / 2)
+        if let senderView = sender.view {
+            switch senderView.tag {
+            case 1: navigationHeaderView.animateBySettingConstant(to: spacing)
+            case 2: navigationHeaderView.animateBySettingConstant(to: 0)
+            case 3: navigationHeaderView.animateBySettingConstant(to: -spacing)
+            default: break
+            }
+        }
     }
     
-    func madeSelection(_ sender: UISegmentedControl) {
+    func swipedContainerView(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.right: break
+            
+        case UISwipeGestureRecognizerDirection.left: break
+        default: break
+        }
 //        blueVC.view.isHidden = sender.selectedSegmentIndex == 1
 //        redVC.view.isHidden = sender.selectedSegmentIndex == 0
     }
+    
+    
     
     private func setupViews() {
         
@@ -75,6 +92,22 @@ class NavigationInterfaceViewController: UIViewController {
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        let swipeLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(swipedContainerView))
+        swipeLeftGR.direction = .left
+        let swipeRightGR = UISwipeGestureRecognizer(target: self, action: #selector(swipedContainerView))
+        swipeRightGR.direction = .right
+        
+        containerView.addGestureRecognizer(swipeLeftGR)
+        containerView.addGestureRecognizer(swipeRightGR)
+        
+        let leftTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
+        let centerTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
+        let rightTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
+        
+        navigationHeaderView.leftImageView.addGestureRecognizer(leftTapGR)
+        navigationHeaderView.centerImageView.addGestureRecognizer(centerTapGR)
+        navigationHeaderView.rightImageView.addGestureRecognizer(rightTapGR)
         
     }
 

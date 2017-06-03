@@ -30,10 +30,6 @@ class LogInViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     
-    
-    
-    
-    
     func checkIfUserIsAlreadySignedIn() {
         // Sign in user automatically
         // THIS IS BROKEN -- SOMETHING ABOUT PRESENTING VC on VC whos view is not in window heirarchy

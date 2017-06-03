@@ -10,7 +10,6 @@ import UIKit
 
 class NavigationHeaderView: UIView {
     
-    let spacing = (UIScreen.main.bounds.width / 2) - (UIScreen.main.bounds.height * 0.5)
     let leftImageView = UIImageView()
     let centerImageView = UIImageView()
     let rightImageView = UIImageView()
@@ -28,18 +27,6 @@ class NavigationHeaderView: UIView {
     }
     
     
-    func tappedImageView(_ sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            switch senderView.tag {
-            case 1: animateBySettingConstant(to: -spacing)
-            case 2: animateBySettingConstant(to: 0)
-            case 3: animateBySettingConstant(to: spacing)
-            default: break
-            }
-        }
-    }
-    
-    
     func animateBySettingConstant(to constant: CGFloat) {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
             self.centerXConstraint.constant = constant
@@ -54,7 +41,7 @@ class NavigationHeaderView: UIView {
     
     func commonInit() {
         
-        
+        let spacing = (UIScreen.main.bounds.width / 2) - (UIScreen.main.bounds.height * 0.5)
         self.backgroundColor = .white
         
         leftImageView.image = #imageLiteral(resourceName: "ic_person_48pt")
@@ -93,13 +80,7 @@ class NavigationHeaderView: UIView {
         rightImageView.widthAnchor.constraint(equalTo: centerImageView.widthAnchor).isActive = true
         rightImageView.heightAnchor.constraint(equalTo: centerImageView.heightAnchor).isActive = true
         
-        let leftTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
-        let centerTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
-        let rightTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
         
-        leftImageView.addGestureRecognizer(leftTapGR)
-        centerImageView.addGestureRecognizer(centerTapGR)
-        rightImageView.addGestureRecognizer(rightTapGR)
         
     }
     
