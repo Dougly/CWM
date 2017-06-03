@@ -27,13 +27,12 @@ class ProfileView: UIView {
     
     
     func setUpSubViews() {
-        self.backgroundColor = .white
+        pictureAndNameView.backgroundColor = .white
     
         self.addSubview(pictureAndNameView)
         self.addSubview(tableView)
        
         pictureAndNameView.translatesAutoresizingMaskIntoConstraints = false
-        pictureAndNameView.backgroundColor = .black
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         pictureAndNameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

@@ -14,29 +14,19 @@ class NavigationInterfaceViewController: UIViewController {
     var visibleVC = UIViewController()
     let containerView = UIView()
     
-    lazy var profileVC: ProfileViewContoller = {
-        let vc = ProfileViewContoller()
-        self.addAsChildVC(childVC: vc)
-        return vc
-    }()
-    
-    lazy var findPartnerVC: FindPartnerViewController = {
-        let vc = FindPartnerViewController()
-        self.addAsChildVC(childVC: vc)
-        return vc
-    }()
-    
-    lazy var chatVC: ChatViewController = {
-        let vc = ChatViewController()
-        self.addAsChildVC(childVC: vc)
-        return vc
-    }()
+    let profileVC: ProfileViewContoller = ProfileViewContoller()
+    let findPartnerVC: FindPartnerViewController  = FindPartnerViewController()
+    let chatVC: ChatViewController = ChatViewController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addAsChildVC(childVC: profileVC)
+        profileVC.view.isHidden = true
+        addAsChildVC(childVC: findPartnerVC)
+        addAsChildVC(childVC: chatVC)
+        chatVC.view.isHidden = true
         setupViews()
-        findPartnerVC.view.isHidden = false
         visibleVC = findPartnerVC
     }
     
@@ -44,7 +34,6 @@ class NavigationInterfaceViewController: UIViewController {
         addChildViewController(childVC)
         containerView.addSubview(childVC.view)
         childVC.view.frame = containerView.frame
-        //containerView.setEqualConstraints(for: childVC.view, navBarHeight: 0)
         childVC.didMove(toParentViewController: self)
     }
     
@@ -52,10 +41,41 @@ class NavigationInterfaceViewController: UIViewController {
         let spacing = (navigationHeaderView.frame.width / 2) - (navigationHeaderView.frame.height / 2)
         if let senderView = sender.view {
             switch senderView.tag {
-            case 1: navigationHeaderView.animateBySettingConstant(to: spacing)
-            case 2: navigationHeaderView.animateBySettingConstant(to: 0)
-            case 3: navigationHeaderView.animateBySettingConstant(to: -spacing)
+            case 1:
+                navigationHeaderView.animateBySettingConstant(to: spacing)
+                move(fromVC: visibleVC, toVC: profileVC, right: true)
+            case 2:
+                navigationHeaderView.animateBySettingConstant(to: 0)
+                move(fromVC: visibleVC, toVC: findPartnerVC, right: false)
+            case 3:
+                navigationHeaderView.animateBySettingConstant(to: -spacing)
+                move(fromVC: visibleVC, toVC: chatVC, right: false)
             default: break
+            }
+        }
+    }
+    
+    func move(fromVC: UIViewController, toVC: UIViewController, right: Bool) {
+        var startXPosition = visibleVC.view.frame.width
+        let width = visibleVC.view.frame.width
+        let height = visibleVC.view.frame.height
+        
+        if right { startXPosition *= -1 }
+        
+        let toVCStartPosition = CGRect(x: startXPosition, y: 0, width: width, height: height)
+        let toVCEndPosition = CGRect(x: 0, y: 0, width: width, height: height)
+        let fromVCEndPosition = CGRect(x: -startXPosition, y: 0, width: width, height: height)
+        
+        toVC.view.frame = toVCStartPosition
+        toVC.view.isHidden = false
+        transition(from: fromVC, to: toVC, duration: 0.3, options: [.curveEaseInOut], animations: {
+            fromVC.view.frame = fromVCEndPosition
+            toVC.view.frame = toVCEndPosition
+            self.view.layoutIfNeeded()
+        }) { (success) in
+            if success {
+                self.visibleVC = toVC
+                fromVC.view.isHidden = true
             }
         }
     }
@@ -70,6 +90,7 @@ class NavigationInterfaceViewController: UIViewController {
 //        blueVC.view.isHidden = sender.selectedSegmentIndex == 1
 //        redVC.view.isHidden = sender.selectedSegmentIndex == 0
     }
+    
     
     
     
