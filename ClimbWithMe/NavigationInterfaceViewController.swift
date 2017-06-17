@@ -66,18 +66,22 @@ class NavigationInterfaceViewController: UIViewController {
     
     
     func move(fromVC: UIViewController, toVC: UIViewController, direction: Direction) {
-        var startXPosition = visibleVC.view.frame.width
+        var startXPosition: CGFloat {
+            switch direction {
+            case .left: return visibleVC.view.frame.width
+            case .right: return visibleVC.view.frame.width * -1
+            }
+        }
+        
         let width = visibleVC.view.frame.width
         let height = visibleVC.view.frame.height
-        
-        if direction == .right { startXPosition *= -1 }
-        
         let toVCStartPosition = CGRect(x: startXPosition, y: 0, width: width, height: height)
         let toVCEndPosition = CGRect(x: 0, y: 0, width: width, height: height)
         let fromVCEndPosition = CGRect(x: -startXPosition, y: 0, width: width, height: height)
         
         toVC.view.frame = toVCStartPosition
         toVC.view.isHidden = false
+        
         transition(from: fromVC, to: toVC, duration: 0.3, options: [.curveEaseInOut], animations: {
             fromVC.view.frame = fromVCEndPosition
             toVC.view.frame = toVCEndPosition
@@ -89,18 +93,6 @@ class NavigationInterfaceViewController: UIViewController {
             }
         }
     }
-    
-    func swipedContainerView(_ sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case UISwipeGestureRecognizerDirection.right: break
-        case UISwipeGestureRecognizerDirection.left: break
-        default: break
-        }
-//        blueVC.view.isHidden = sender.selectedSegmentIndex == 1
-//        redVC.view.isHidden = sender.selectedSegmentIndex == 0
-    }
-    
-    
     
     
     private func setupViews() {
@@ -129,14 +121,6 @@ class NavigationInterfaceViewController: UIViewController {
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        let swipeLeftGR = UISwipeGestureRecognizer(target: self, action: #selector(swipedContainerView))
-        swipeLeftGR.direction = .left
-        let swipeRightGR = UISwipeGestureRecognizer(target: self, action: #selector(swipedContainerView))
-        swipeRightGR.direction = .right
-        
-        containerView.addGestureRecognizer(swipeLeftGR)
-        containerView.addGestureRecognizer(swipeRightGR)
         
         let leftTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
         let centerTapGR = UITapGestureRecognizer(target: self, action: #selector(tappedImageView))
