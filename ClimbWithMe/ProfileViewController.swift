@@ -13,6 +13,8 @@ class ProfileViewContoller: UIViewController {
     
     let profileView = ProfileView()
     let firebaseAuth = FIRAuth.auth()
+    let profileTableViewDelegate = ProfileTableViewDelegate()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,6 @@ class ProfileViewContoller: UIViewController {
     
     func setupView() {
         
-        let profileTableViewDelegate = ProfileTableViewDelegate()
-        profileView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "gymCell")
-        profileView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "headerCell")
         profileView.tableView.delegate = profileTableViewDelegate
         profileView.tableView.dataSource = profileTableViewDelegate
         

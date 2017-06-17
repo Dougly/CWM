@@ -10,7 +10,24 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    //TODO: Design Custom cell
+    let titleLabel = UILabel()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        titleLabel.font = UIFont(name: "Helvetica", size: 18)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.setEqualConstraints(for: titleLabel, navBarHeight: 0)
+
+    }
     
     
 }
