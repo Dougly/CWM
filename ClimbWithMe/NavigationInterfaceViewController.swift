@@ -17,7 +17,6 @@ class NavigationInterfaceViewController: UIViewController {
     let navigationHeaderView = NavigationHeaderView()
     var visibleVC = UIViewController()
     let containerView = UIView()
-    
     let profileVC: ProfileViewContoller = ProfileViewContoller()
     let findPartnerVC: FindPartnerViewController  = FindPartnerViewController()
     let chatVC: ChatViewController = ChatViewController()
@@ -25,13 +24,7 @@ class NavigationInterfaceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addAsChildVC(childVC: profileVC)
-        profileVC.view.isHidden = true
-        addAsChildVC(childVC: findPartnerVC)
-        addAsChildVC(childVC: chatVC)
-        chatVC.view.isHidden = true
         setupViews()
-        visibleVC = findPartnerVC
     }
     
     
@@ -46,6 +39,7 @@ class NavigationInterfaceViewController: UIViewController {
     func tappedImageView(_ sender: UITapGestureRecognizer) {
         let spacing = (navigationHeaderView.frame.width / 2) - (navigationHeaderView.frame.height / 2)
         if let senderView = sender.view {
+            disableInteractionFor(view: senderView)
             switch senderView.tag {
             case 1:
                 navigationHeaderView.animateBySettingConstant(to: spacing)
@@ -60,6 +54,14 @@ class NavigationInterfaceViewController: UIViewController {
             default: break
             }
         }
+    }
+    
+    
+    func disableInteractionFor(view: UIView) {
+        navigationHeaderView.leftImageView.isUserInteractionEnabled = true
+        navigationHeaderView.centerImageView.isUserInteractionEnabled = true
+        navigationHeaderView.rightImageView.isUserInteractionEnabled = true
+        view.isUserInteractionEnabled = false
     }
     
     
@@ -102,6 +104,13 @@ class NavigationInterfaceViewController: UIViewController {
     
     
     private func setupViews() {
+        
+        profileVC.view.isHidden = true
+        chatVC.view.isHidden = true
+        addAsChildVC(childVC: profileVC)
+        addAsChildVC(childVC: findPartnerVC)
+        addAsChildVC(childVC: chatVC)
+        visibleVC = findPartnerVC
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         self.view.backgroundColor = .gray
