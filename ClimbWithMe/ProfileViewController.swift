@@ -44,6 +44,7 @@ class ProfileViewContoller: UIViewController {
         profileView.tableView.delegate = profileTableViewDelegate
         profileView.tableView.dataSource = profileTableViewDelegate
         
+        self.view.tag = 1
         self.view.addSubview(profileView)
         self.view.setEqualConstraints(for: profileView, navBarHeight: 0)
         

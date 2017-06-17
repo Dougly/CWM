@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum Direction {
+    case left, right
+}
+
 class NavigationInterfaceViewController: UIViewController {
     
     let navigationHeaderView = NavigationHeaderView()
@@ -30,6 +34,7 @@ class NavigationInterfaceViewController: UIViewController {
         visibleVC = findPartnerVC
     }
     
+    
     private func addAsChildVC(childVC: UIViewController) {
         addChildViewController(childVC)
         containerView.addSubview(childVC.view)
@@ -37,30 +42,33 @@ class NavigationInterfaceViewController: UIViewController {
         childVC.didMove(toParentViewController: self)
     }
     
+    
     func tappedImageView(_ sender: UITapGestureRecognizer) {
         let spacing = (navigationHeaderView.frame.width / 2) - (navigationHeaderView.frame.height / 2)
         if let senderView = sender.view {
             switch senderView.tag {
             case 1:
                 navigationHeaderView.animateBySettingConstant(to: spacing)
-                move(fromVC: visibleVC, toVC: profileVC, right: true)
+                move(fromVC: visibleVC, toVC: profileVC, direction: .right)
             case 2:
                 navigationHeaderView.animateBySettingConstant(to: 0)
-                move(fromVC: visibleVC, toVC: findPartnerVC, right: false)
+                let direction: Direction = visibleVC.view.tag == 1 ? .left : .right
+                move(fromVC: visibleVC, toVC: findPartnerVC, direction: direction)
             case 3:
                 navigationHeaderView.animateBySettingConstant(to: -spacing)
-                move(fromVC: visibleVC, toVC: chatVC, right: false)
+                move(fromVC: visibleVC, toVC: chatVC, direction: .left)
             default: break
             }
         }
     }
     
-    func move(fromVC: UIViewController, toVC: UIViewController, right: Bool) {
+    
+    func move(fromVC: UIViewController, toVC: UIViewController, direction: Direction) {
         var startXPosition = visibleVC.view.frame.width
         let width = visibleVC.view.frame.width
         let height = visibleVC.view.frame.height
         
-        if right { startXPosition *= -1 }
+        if direction == .right { startXPosition *= -1 }
         
         let toVCStartPosition = CGRect(x: startXPosition, y: 0, width: width, height: height)
         let toVCEndPosition = CGRect(x: 0, y: 0, width: width, height: height)
@@ -83,7 +91,6 @@ class NavigationInterfaceViewController: UIViewController {
     func swipedContainerView(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right: break
-            
         case UISwipeGestureRecognizerDirection.left: break
         default: break
         }

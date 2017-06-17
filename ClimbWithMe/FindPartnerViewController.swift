@@ -31,7 +31,8 @@ class FindPartnerViewController: UIViewController {
             findPartnerView.typeLabel.text = "Type: \(user.certifications.first?.rawValue ?? "No Certificiation")"
             findPartnerView.timeLabel.text = "--:--"
         }
-            
+        
+        self.view.tag = 2
         self.view.addSubview(findPartnerView)
         self.view.setEqualConstraints(for: findPartnerView, navBarHeight: 0)
         
