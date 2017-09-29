@@ -24,7 +24,6 @@ class ProfileTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDele
         gymCell.contentView.backgroundColor = .blue
         gymCell.titleLabel.text = tableViewItems[indexPath.row]
         
-        
         return gymCell
         
     }

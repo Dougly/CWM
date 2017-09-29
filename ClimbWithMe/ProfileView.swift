@@ -28,7 +28,9 @@ class ProfileView: UIView {
     
     func setUpSubViews() {
         pictureAndNameView.backgroundColor = .white
+        
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "profileCell")
+        tableView.separatorStyle = .none
         
         self.addSubview(pictureAndNameView)
         self.addSubview(tableView)

@@ -20,4 +20,6 @@ class ChatViewController: UIViewController {
     func setupView() {
         self.view.tag = 3
     }
+    
+    
 }

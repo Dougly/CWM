@@ -22,6 +22,8 @@ class ProfileViewContoller: UIViewController {
         
     }
     
+    
+    
     // Functionality for Logoout Button
     func logoutButtonTapped(_ sender: UIButton) {
         do {
@@ -34,9 +36,12 @@ class ProfileViewContoller: UIViewController {
         }
     }
     
+    
+    
     func presentFindPartnerVC() {
         //self.navigationController?.pop(transitionType: kCATransitionPush, subtype: kCATransitionFromRight, duration: 0.3)
     }
+    
     
     func setupView() {
         
@@ -47,7 +52,7 @@ class ProfileViewContoller: UIViewController {
         self.view.addSubview(profileView)
         self.view.setEqualConstraints(for: profileView, navBarHeight: 0)
         
-        
-        
     }
+    
+    
 }
